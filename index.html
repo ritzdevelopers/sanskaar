@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Landing Page</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  </head>
+  <body class="overflow-x-hidden relative">
+    <!-- Navbar -->
+    <nav
+      class="fixed navbarZ w-full top-0 left-0 bg-white w-screen flex justify-between items-center px-6 md:px-20 py-4 z-999999"
+    >
+      <!-- Logo -->
+      <div class="logo w-[153px] h-[50px]">
+        <img
+          src="/images/sanskarLog.png"
+          class="w-full h-full"
+          alt="sanskarLog.png"
+        />
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:block">
+        <ul
+          style="font-family: monster_mdm"
+          class="flex font-[500] text-[16px] text-black gap-[60px]"
+        >
+          <li><a href="#">ABOUT US</a></li>
+          <li><a href="#">UPCOMMING PROJECTS</a></li>
+          <li><a href="#">CONTACT US</a></li>
+        </ul>
+      </div>
+
+      <!-- Desktop Button -->
+      <div class="hidden md:block">
+        <button
+          style="font-family: monster_mdm"
+          class="w-[194px] h-[52px] text-white bg-black rounded-[4px] shadow-md shadow-[#0000001A]"
+        >
+          Book A Site Visit
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="menuBtn" class="focus:outline-none">
+          <!-- Hamburger SVG -->
+          <svg
+            id="openIcon"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-8 h-8 text-black"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+
+          <!-- Cross SVG (hidden by default) -->
+          <svg
+            id="closeIcon"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-8 h-8 text-black hidden"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Overlay Menu -->
+    <div
+      id="mobileMenu"
+      class="fixed top-0 left-0 w-full h-screen bg-white flex flex-col justify-center items-center space-y-8 text-black text-xl font-medium z-40 hidden"
+    >
+      <a href="#" style="font-family: monster_mdm">ABOUT US</a>
+      <a href="#" style="font-family: monster_mdm">UPCOMMING PROJECTS</a>
+      <a href="#" style="font-family: monster_mdm">CONTACT US</a>
+      <button
+        style="font-family: monster_mdm"
+        class="w-[194px] h-[52px] text-white bg-black rounded-[4px] shadow-md shadow-[#0000001A]"
+      >
+        Book A Site Visit
+      </button>
+    </div>
+
+    <!-- Section 1 -->
+    <section
+      class="s1 w-screen sticky -top-40 z-0 h-screen mt-20 flex flex-col md:flex-row relative items-center md:pl-[81px] px-6 justify-center md:justify-start"
+      style="
+        background-image: url(./images/s1/s1BG.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      "
+    >
+      <!-- Center Align Div -->
+      <div class="text-white w-full text-center md:text-left">
+        <!-- Absolute Circle div -->
+        <div class="relative relative md:w-[711px] text-white w-full">
+          <div
+            class="w-[148px] h-[148px] bg-[#F7A51D] rounded-full absolute right-[10%] md:right-[10rem] top-10 md:top-28 -translate-x-1/2 -translate-y-1/3 z-0 opacity-0 circleAnim"
+          ></div>
+
+          <h1
+            style="font-family: monster_semiBold"
+            class="text-[40px] sm:text-[52px] md:text-[64px] font-[600] relative opacity-0 headingAnim"
+          >
+            <span
+              class="text-[90px] sm:text-[120px] md:text-[151px] font-[600] relative"
+              >S</span
+            >ANSKAR REALITY
+          </h1>
+        </div>
+
+        <p
+          style="font-family: monster_mdm"
+          class="uppercase font-[500] text-[22px] sm:text-[32px] md:text-[46px] relative opacity-0 subHeadingAnim"
+        >
+          A venture by Yatharth Group
+        </p>
+      </div>
+
+      <!-- Bottom Arrow Absolute Div -->
+      <div
+        class="absolute bottom-10 left-6 md:bottom-20 md:left-[41px] opacity-0 arrowAnim"
+      >
+        <!-- Rotated Text -->
+        <div class="flex items-center">
+          <span
+            style="font-family: lato_regular"
+            class="font-[400] text-[14px] sm:text-[16px] md:text-[18px] text-white rotate-[270deg]"
+          >
+            Scroll Down
+          </span>
+
+          <!-- Arrow SVG -->
+          <p class="absolute -top-8 left-20 hidden md:block">
+            <svg
+              width="16"
+              height="94"
+              viewBox="0 0 16 94"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.29289 93.7071C7.68341 94.0976 8.31658 94.0976 8.7071 93.7071L15.0711 87.3431C15.4616 86.9526 15.4616 86.3195 15.0711 85.9289C14.6805 85.5384 14.0474 85.5384 13.6569 85.9289L8 91.5858L2.34314 85.9289C1.95262 85.5384 1.31945 85.5384 0.928929 85.9289C0.538405 86.3195 0.538405 86.9526 0.928929 87.3431L7.29289 93.7071ZM8 0L7 -3.57211e-08L7 93L8 93L9 93L9 3.57211e-08L8 0Z"
+                fill="white"
+              />
+            </svg>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- This is Section 2 -->
+    <section
+      class="s2 w-screen min-h-[140vh] pb-40 bg-white relative overflow-hidden px-4 sm:px-6 md:pl-20 pt-20"
+    >
+      <!-- Absolute Position Elips -->
+      <img
+        src="./images/s2/s2Elips.png"
+        alt="sanskaar Elips"
+        class="absolute s2Elips top-0 left-0 w-full h-full object-cover z-1"
+      />
+
+      <!-- Absolute Position Bottom Container -->
+      <img
+        src="./images/s2/s2Footer.png"
+        alt="Sanskaar"
+        class="absolute bottom-0 left-0 w-full h-[300px] sm:h-[500px] md:h-[713px] object-cover z-0"
+      />
+
+      <!-- Main Content Container -->
+      <div
+        class="relative s2MainContainer w-full flex flex-col md:flex-row justify-between items-start z-10 gap-10"
+      >
+        <!-- Left Side Div -->
+        <div
+          class="w-full s2LeftSideDiv md:w-[407px] flex flex-col gap-6 text-center md:text-left"
+        >
+          <p
+            style="font-family: monster_regular"
+            class="font-[400] text-[14px] sm:text-[16px] text-black uppercase tracking-wide"
+          >
+            Great Features
+          </p>
+          <h2
+            style="font-family: monster_mdm"
+            class="text-[22px] sm:text-[28px] md:text-[36px] text-black font-[500] leading-tight"
+          >
+            Classic Interiors & Exteriors
+          </h2>
+          <p
+            style="font-family: monster_regular"
+            class="text-[#00000099] text-[14px] sm:text-[16px] font-[400] leading-relaxed"
+          >
+            Generously sized, this home delivers the very best Interiors &
+            exteriors.
+          </p>
+          <button
+            style="font-family: monster_mdm"
+            class="font-[500] text-[14px] sm:text-[16px] bg-[#F7A51D] w-[160px] sm:w-[180px] h-[48px] sm:h-[52px] rounded-lg shadow-md hover:bg-[#e5950c] transition duration-300 text-white mx-auto md:mx-0"
+          >
+            Book A Site Visit
+          </button>
+        </div>
+
+        <!-- Right Side Div -->
+        <div
+          class="flex s2RightSideDiv flex-wrap w-full md:w-[750px] justify-center md:justify-around gap-6 sm:gap-8"
+        >
+          <!-- Card -->
+          <div
+            class="s2CardDiv w-full sm:w-[280px] md:w-[320px] min-h-[188px] p-6 flex flex-col gap-4 hover:shadow-xl transition duration-300 relative z-10 text-center sm:text-left"
+          >
+            <img
+              src="./images/s2/home_icn.png"
+              class="w-[50px] sm:w-[60px] h-[50px] sm:h-[60px] mx-auto sm:mx-0"
+              alt=""
+            />
+            <p
+              style="font-family: monster_mdm"
+              class="font-[500] text-[18px] sm:text-[20px] text-black"
+            >
+              Latest Property
+            </p>
+            <p
+              style="font-family: monster_regular"
+              class="font-[400] text-[14px] sm:text-[16px] text-[#00000099] leading-relaxed"
+            >
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry.
+            </p>
+          </div>
+
+          <div
+            class="s2CardDiv w-full sm:w-[280px] md:w-[320px] min-h-[188px] p-6 flex flex-col gap-4 hover:shadow-xl transition duration-300 relative z-10 text-center sm:text-left"
+          >
+            <img
+              src="./images/s2/map_icn.png"
+              class="w-[50px] sm:w-[60px] h-[50px] sm:h-[60px] mx-auto sm:mx-0"
+              alt=""
+            />
+            <p
+              style="font-family: monster_mdm"
+              class="font-[500] text-[18px] sm:text-[20px] text-black"
+            >
+              Awesome Area
+            </p>
+            <p
+              style="font-family: monster_regular"
+              class="font-[400] text-[14px] sm:text-[16px] text-[#00000099] leading-relaxed"
+            >
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry.
+            </p>
+          </div>
+
+          <div
+            class="s2CardDiv w-full sm:w-[280px] md:w-[320px] min-h-[188px] p-6 flex flex-col gap-4 hover:shadow-xl transition duration-300 relative z-10 text-center sm:text-left"
+          >
+            <img
+              src="./images/s2/crcle_icn.png"
+              class="w-[50px] sm:w-[60px] h-[50px] sm:h-[60px] mx-auto sm:mx-0"
+              alt=""
+            />
+            <p
+              style="font-family: monster_mdm"
+              class="font-[500] text-[18px] sm:text-[20px] text-black"
+            >
+              Great Surroundings
+            </p>
+            <p
+              style="font-family: monster_regular"
+              class="font-[400] text-[14px] sm:text-[16px] text-[#00000099] leading-relaxed"
+            >
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry.
+            </p>
+          </div>
+
+          <div
+            class="s2CardDiv w-full sm:w-[280px] md:w-[320px] min-h-[188px] p-6 flex flex-col gap-4 hover:shadow-xl transition duration-300 relative z-10 text-center sm:text-left"
+          >
+            <img
+              src="./images/s2/diamond_icn.png"
+              class="w-[50px] sm:w-[60px] h-[50px] sm:h-[60px] mx-auto sm:mx-0"
+              alt=""
+            />
+            <p
+              style="font-family: monster_mdm"
+              class="font-[500] text-[18px] sm:text-[20px] text-black"
+            >
+              Supreme Location
+            </p>
+            <p
+              style="font-family: monster_regular"
+              class="font-[400] text-[14px] sm:text-[16px] text-[#00000099] leading-relaxed"
+            >
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Main Content -->
+      <div
+        class="w-full flex justify-center items-center z-50 mt-8 sm:mt-12 md:mt-1 h-auto md:h-[713px]"
+      >
+        <div
+          class="w-[95%] h-auto md:h-[436px] flex flex-wrap justify-center md:justify-between gap-6"
+        >
+          <div class="w-full sm:w-[250px] md:w-[301px]">
+            <div
+              class="s2Card2 relative z-20 w-full h-[220px] sm:h-[260px] md:h-[302px] bg-white shadow-md rounded-[20px] md:rounded-[26px] text-black flex flex-col justify-center items-center"
+            >
+              <p
+                style="font-family: monster_mdm"
+                class="text-[32px] sm:text-[40px] md:text-[46px] font-[500]"
+              >
+                30+
+              </p>
+              <p
+                style="font-family: monster_regular"
+                class="font-[400] text-[16px] sm:text-[18px] md:text-[20px]"
+              >
+                Lorem Lipsum
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="w-full sm:w-[250px] md:w-[301px] flex justify-center md:items-end"
+          >
+            <div
+              class="s2Card2 relative z-20 w-full h-[220px] sm:h-[260px] md:h-[302px] bg-white shadow-md rounded-[20px] md:rounded-[26px] text-black flex flex-col justify-center items-center"
+            >
+              <p
+                style="font-family: monster_mdm"
+                class="text-[32px] sm:text-[40px] md:text-[46px] font-[500]"
+              >
+                30+
+              </p>
+              <p
+                style="font-family: monster_regular"
+                class="font-[400] text-[16px] sm:text-[18px] md:text-[20px]"
+              >
+                Lorem Lipsum
+              </p>
+            </div>
+          </div>
+
+          <div class="w-full sm:w-[250px] md:w-[301px]">
+            <div
+              class="s2Card2 relative z-20 w-full h-[220px] sm:h-[260px] md:h-[302px] bg-white shadow-md rounded-[20px] md:rounded-[26px] text-black flex flex-col justify-center items-center"
+            >
+              <p
+                style="font-family: monster_mdm"
+                class="text-[32px] sm:text-[40px] md:text-[46px] font-[500]"
+              >
+                30+
+              </p>
+              <p
+                style="font-family: monster_regular"
+                class="font-[400] text-[16px] sm:text-[18px] md:text-[20px]"
+              >
+                Lorem Lipsum
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="w-full sm:w-[250px] md:w-[301px] flex justify-center md:items-end"
+          >
+            <div
+              class="s2Card2 relative z-20 w-full h-[220px] sm:h-[260px] md:h-[302px] bg-white shadow-md rounded-[20px] md:rounded-[26px] text-black flex flex-col justify-center items-center"
+            >
+              <p
+                style="font-family: monster_mdm"
+                class="text-[32px] sm:text-[40px] md:text-[46px] font-[500]"
+              >
+                30+
+              </p>
+              <p
+                style="font-family: monster_regular"
+                class="font-[400] text-[16px] sm:text-[18px] md:text-[20px]"
+              >
+                Lorem Lipsum
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- This Is Section 3  -->
+    <section
+      style="z-index: 9999"
+      class="s3 w-screen flex justify-center bg-[#FFF9EE] min-h-screen"
+    >
+      <div
+        style="z-index: 9999"
+        class="w-full h-full flex justify-center py-16 bg-[#FFF9EE]"
+      >
+        <div
+          style="z-index: 9999"
+          class="w-[90%] bg-[#FFF9EE] flex flex-col items-center gap-12"
+        >
+          <!-- Header Part -->
+          <div
+            class="header w-full flex flex-col justify-center gap-10 items-center text-center md:text-left"
+          >
+            <h2
+              style="font-family: monster_semiBold"
+              class="font-[600] text-[28px] sm:text-[32px] md:text-[36px] uppercase text-[#231F20]"
+            >
+              Upcoming Projects
+            </h2>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button
+                style="font-family: lato_regular"
+                class="w-[184px] sm:w-[184px] h-[49px] shadow-md font-[400] text-[24px] bg-black text-white"
+              >
+                Residential
+              </button>
+              <button
+                style="font-family: lato_regular"
+                class="w-[184px] sm:w-[184px] h-[49px] shadow-md font-[400] text-[24px] bg-white text-black"
+              >
+                Commercial
+              </button>
+            </div>
+          </div>
+
+          <!-- Center Banner Image -->
+          <div
+            class="md:w-[1280px] flex justify-center items-center bg-red-500 h-[400px] sm:h-[500px] md:h-[617px]"
+          >
+            <img
+              src="./images/s3/s3BannerImg.png"
+              class="w-full h-full object-cover"
+              alt=""
+            />
+          </div>
+
+          <!-- Centered Paragraph -->
+          <div class="w-full flex justify-center items-center px-4 sm:px-0">
+            <div class="max-w-5xl text-center">
+              <p
+                style="font-family: lato_regular"
+                class="text-[14px] sm:text-[16px] md:text-[16px] text-[#151515] font-[400] capitalize"
+              >
+                Thoughtfully planned communities with abundant light, airflow,
+                and green edges. Homes engineered for longevity, digital
+                comfort, and everyday wellness. Launching in prime Noida
+                micro-markets with easy commutes, reliable utilities, secure
+                environments, and joyful shared spaces designed to bring
+                neighbours together.
+              </p>
+            </div>
+          </div>
+
+          <!-- Left & Right Sections -->
+          <div class="w-full flex flex-col md:flex-row">
+            <!-- Left Section -->
+            <div class="lftSec w-full md:w-[611px] flex flex-col gap-4">
+              <div class="sliderContainer w-full flex flex-col gap-4">
+                <div
+                  class="slider w-full h-[300px] sm:h-[400px] md:w-[611px] md:h-[540px]"
+                >
+                  <div class="wrapper">
+                    <div class="slider slider-one">
+                      <div class="slide">
+                        <img
+                          src="./images/s3/s3Sl.png"
+                          alt=""
+                          class="h-full w-full object-contain"
+                        />
+                      </div>
+                      <div class="slide">
+                        <img
+                          src="./images/s3/s3Sl.png"
+                          alt=""
+                          class="h-full w-full object-contain"
+                        />
+                      </div>
+                      <div class="slide">
+                        <img
+                          src="./images/s3/s3Sl.png"
+                          alt=""
+                          class="h-full w-full object-contain"
+                        />
+                      </div>
+                      <div class="slide">
+                        <img
+                          src="./images/s3/s3Sl.png"
+                          alt=""
+                          class="h-full w-full object-contain"
+                        />
+                      </div>
+                      <div class="slide">
+                        <img
+                          src="./images/s3/s3Sl.png"
+                          alt=""
+                          class="h-full w-full object-contain"
+                        />
+                      </div>
+                      <div class="slide">
+                        <img
+                          src="./images/s3/s3Sl.png"
+                          alt=""
+                          class="h-full w-full object-contain"
+                        />
+                      </div>
+                    </div>
+         <div class="buttons mt-8 flex gap-4 z-50">
+  <!-- Previous Button -->
+  <button
+    id="prev"
+    class="p-3 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition"
+  >
+    <!-- Left Arrow Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <!-- Next Button -->
+  <button
+    id="next"
+    class="p-3 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition"
+  >
+    <!-- Right Arrow Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+</div>
+
+                  </div>
+                </div>
+                <div
+                  class="flex w-full hidden justify-center items-center gap-2"
+                >
+                  <span
+                    class="circle w-[16px] h-[16px] bg-[#D9D9D9] rounded-full"
+                  ></span>
+                  <span
+                    class="circle w-[16px] h-[16px] bg-[#686868] rounded-full"
+                  ></span>
+                  <span
+                    class="circle w-[16px] h-[16px] bg-[#D9D9D9] rounded-full"
+                  ></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Section -->
+            <div class="rghtSec w-full md:w-[619px] pl-0 md:pl-12">
+              <div class="w-full flex flex-col gap-[2rem] mt-[24px]">
+                <h1
+                  style="font-family: lato_bold"
+                  class="text-[28px] sm:text-[32px] md:text-[36px] font-[600] text-black mb-1"
+                >
+                  Highlights
+                </h1>
+                <ul
+                  style="font-family: lato_regular"
+                  class="flex flex-col gap-6 md:gap-[15px]"
+                >
+                  <li>
+                    <div class="flex items-center gap-2 md:gap-4">
+                      <img
+                        src="./images/s3/ajeebArrow.png"
+                        class="w-[24px] sm:w-[28px] md:w-[60px]"
+                        alt="arrow"
+                      />
+                      <p
+                        class="text-[14px] sm:text-[18px] md:text-[24px] font-[400] leading-relaxed text-[#15151599]"
+                      >
+                        Wellness-first layouts with cross-ventilation and
+                        daylight optimization throughout.
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="flex items-center gap-2 md:gap-4">
+                      <img
+                        src="./images/s3/ajeebArrow.png"
+                        class="w-[24px] sm:w-[28px] md:w-[40px]"
+                        alt="arrow"
+                      />
+                      <p
+                        class="text-[14px] sm:text-[18px] md:text-[24px] font-[400] leading-relaxed text-[#15151599]"
+                      >
+                        Smart home readiness with fiber, IoT, and automation.
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="flex items-center gap-2 md:gap-4">
+                      <img
+                        src="./images/s3/ajeebArrow.png"
+                        class="w-[24px] sm:w-[28px] md:w-[40px]"
+                        alt="arrow"
+                      />
+                      <p
+                        class="text-[14px] sm:text-[18px] md:text-[24px] font-[400] leading-relaxed text-[#15151599]"
+                      >
+                        Community greens, active terraces, and thoughtfully
+                        curated amenities.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+                <button
+                  style="font-family: monster_mdm"
+                  class="w-full sm:w-[191px] mt-4 h-[48px] font-[500] text-[16px] sm:h-[52px] bg-black text-white"
+                >
+                  Explore More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- This Is Section 4  -->
+    <section
+      class="s4 w-screen bg-white min-h-[140vh] z-999 flex flex-col items-center relative gap-12 py-6"
+    >
+      <!-- Absolute Position Elips Div  -->
+      <img
+        src="/images/s2/s2Elips.png"
+        alt=""
+        class="absolute top-0 left-0 w-screen h-full z-0"
+      />
+
+      <div class="w-[90%] flex justify-center items-center space-y-4">
+        <div
+          class="max-w-5xl gap-6 flex flex-col justify-center items-center text-center"
+        >
+          <h2
+            style="font-family: lato_bold"
+            class="font-[600] text-[36px] md:text-[36px] sm:text-[28px]"
+          >
+            WHY NOIDA ?
+          </h2>
+          <p
+            style="font-family: lato_regular"
+            class="font-[400] text-[16px] capitalize text-[#151515]"
+          >
+            Noida blends strategic connectivity, talent density, and progressive
+            governance to create India’s dependable launchpad for life and
+            business. With expanding metro lines, expressways, and social
+            infrastructure, the city offers affordability, reliability, and
+            growth; truly ideal for future-ready residential and commercial
+            developments.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="w-[88%] flex flex-col lg:flex-row justify-between z-10 gap-8 lg:gap-0"
+      >
+        <!-- Left Section -->
+        <div class="rghtSec">
+          <div class="flex flex-col md:w-[609px]">
+            <!-- Heading -->
+            <h1
+              class="text-[36px] font-[600] text-black mb-6"
+              style="font-family: lato_bold"
+            >
+              Highlights
+            </h1>
+
+            <!-- List -->
+            <ul style="font-family: lato_regular" class="flex flex-col gap-6">
+              <li class="w-full">
+                <div class="flex items-center gap-4">
+                  <img
+                    src="./images/s3/ajeebArrow.png"
+                    class="w-[40px] mt-1"
+                    alt="arrow"
+                  />
+                  <p
+                    class="capitalize font-[400] text-[20px] md:text-[24px] leading-relaxed text-[#15151599]"
+                  >
+                    Multi-corridor metro, expressways, and airport connectivity.
+                  </p>
+                </div>
+              </li>
+
+              <li class="w-full">
+                <div class="flex items-center gap-4">
+                  <img
+                    src="./images/s3/ajeebArrow.png"
+                    class="w-[40px] mt-1"
+                    alt="arrow"
+                  />
+                  <p
+                    class="capitalize font-[400] text-[20px] md:text-[24px] leading-relaxed text-[#15151599]"
+                  >
+                    Large skilled workforce and thriving startup ecosystem.
+                  </p>
+                </div>
+              </li>
+
+              <li class="w-full">
+                <div class="flex items-center gap-4">
+                  <img
+                    src="./images/s3/ajeebArrow.png"
+                    class="w-[40px] mt-1"
+                    alt="arrow"
+                  />
+                  <p
+                    class="capitalize font-[400] text-[20px] md:text-[24px] leading-relaxed text-[#15151599]"
+                  >
+                    Pro-business governance, faster approvals, stable utilities.
+                  </p>
+                </div>
+              </li>
+
+              <li class="w-full">
+                <div class="flex items-center gap-4">
+                  <img
+                    src="./images/s3/ajeebArrow.png"
+                    class="w-[40px] mt-1"
+                    alt="arrow"
+                  />
+                  <p
+                    class="capitalize font-[400] text-[20px] md:text-[24px] leading-relaxed text-[#15151599]"
+                  >
+                    Quality schools, healthcare, and recreation at accessible
+                    prices.
+                  </p>
+                </div>
+              </li>
+            </ul>
+
+            <button
+              style="font-family: monster_mdm"
+              class="w-[191px] mt-6 h-[52px] bg-black text-white cursor-pointer"
+            >
+              Explore More
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="lftSec">
+          <div class="sliderContainer w-full relative flex flex-col gap-4">
+            <div
+              class="slider w-full h-[300px] sm:h-[400px] md:w-[611px] md:h-[540px]"
+            >
+              <div class="wrapper2">
+                <div class="slider2 slider-two">
+                  <div class="slide2">
+                    <img
+                      src="./images/s4/s4i2.png"
+                      class="w-full md:h-full object-contain"
+                      alt=""
+                    />
+                  </div>
+                  <div class="slide2">
+                    <img
+                      src="./images/s4/s4i2.png"
+                      class="w-full md:h-full object-contain"
+                      alt=""
+                    />
+                  </div>
+                  <div class="slide2">
+                    <img
+                      src="./images/s4/s4i2.png"
+                      class="w-full md:h-full object-contain"
+                      alt=""
+                    />
+                  </div>
+                  <div class="slide2">
+                    <img
+                      src="./images/s4/s4i2.png"
+                      class="w-full md:h-full object-contain"
+                      alt=""
+                    />
+                  </div>
+                  <div class="slide2">
+                    <img
+                      src="./images/s4/s4i2.png"
+                      class="w-full md:h-full object-contain"
+                      alt=""
+                    />
+                  </div>
+                  <div class="slide2">
+                    <img
+                      src="./images/s4/s4i2.png"
+                      class="w-full md:h-full object-contain"
+                      alt=""
+                    />
+                  </div>
+                </div>
+          <div class="buttons mt-3 flex gap-4 z-50">
+  <!-- Previous Button -->
+  <button
+    id="prev2"
+    class="p-3 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition"
+  >
+    <!-- Left Arrow Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <!-- Next Button -->
+  <button
+    id="next2"
+    class="p-3 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition"
+  >
+    <!-- Right Arrow Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+</div>
+
+              </div>
+            </div>
+
+            <div
+              class="flex hidden w-full justify-center items-center gap-2 absolute bottom-6 left-1/2 -translate-x-1/2 z-50"
+            >
+              <p class="circle w-[16px] h-[16px] bg-[#D9D9D9] rounded-full"></p>
+              <p class="circle w-[16px] h-[16px] bg-[#686868] rounded-full"></p>
+              <p class="circle w-[16px] h-[16px] bg-[#D9D9D9] rounded-full"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- This Is Section 5 -->
+    <section
+      class="s5 w-screen min-h-[135vh] pb-8 relative flex justify-center"
+      style="
+        background-image: url(/images/s5/sanskaars5.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      "
+    >
+      <div
+        class="flex flex-col lg:flex-row w-[90%] justify-between pt-20 gap-12 lg:gap-0"
+      >
+        <!-- Left Side Card -->
+        <div class="leftSide flex-1 flex flex-col gap-20">
+          <div class="flex flex-col md:w-[571px] gap-6">
+            <h2
+              style="font-family: lato_bold"
+              class="uppercase font-[600] text-[36px] text-white"
+            >
+              Location Advantages
+            </h2>
+            <p
+              style="font-family: lato_regular"
+              class="font-[400] capitalize text-[28px] text-[#FFFFFF99]"
+            >
+              Surrounded by necessity, Connected to all essentials
+            </p>
+          </div>
+
+          <div class="listContainer md:w-[502px] flex flex-col gap-6 sm:gap-4">
+            <div
+              class="card3 flex flex-col sm:flex-row items-center gap-4 border-b-[1px] border-[#FFC86C] p-4"
+            >
+              <div
+                class="group bg-[#F8F4F4] w-[90px] h-[90px] flex justify-center items-center rounded-full flex-shrink-0"
+              >
+                <img
+                  src="./images/s5/icnn1.png"
+                  class="w-[50.5px] h-[50.5px]"
+                  alt=""
+                />
+              </div>
+              <p
+                style="font-family: monster_regular"
+                class="font-[500] text-[20px] text-white text-center sm:text-left"
+              >
+                Multi-corridor metro, expressways, and airport connectivity.
+              </p>
+            </div>
+
+            <div
+              class="card3 flex flex-col sm:flex-row items-center gap-4 border-b-[1px] border-[#FFC86C] p-4"
+            >
+              <div
+                class="group bg-[#F8F4F4] w-[90px] h-[90px] flex justify-center items-center rounded-full flex-shrink-0"
+              >
+                <img
+                  src="./images/s5/icnn2.png"
+                  class="w-[50.5px] h-[50.5px]"
+                  alt=""
+                />
+              </div>
+              <p
+                style="font-family: monster_regular"
+                class="font-[500] text-[20px] text-white text-center sm:text-left"
+              >
+                Large skilled workforce and thriving startup ecosystem.
+              </p>
+            </div>
+
+            <div
+              class="card3 flex flex-col sm:flex-row items-center gap-4 border-b-[1px] border-[#FFC86C] p-4"
+            >
+              <div
+                class="group bg-[#F8F4F4] w-[90px] h-[90px] flex justify-center items-center rounded-full flex-shrink-0"
+              >
+                <img
+                  src="./images/s5/icnn3.png"
+                  class="w-[50.5px] h-[50.5px]"
+                  alt=""
+                />
+              </div>
+              <p
+                style="font-family: monster_regular"
+                class="font-[500] text-[20px] text-white text-center sm:text-left"
+              >
+                Pro-business governance, faster approvals, stable utilities.
+              </p>
+            </div>
+
+            <div class="card3 flex flex-col sm:flex-row items-center gap-4 p-4">
+              <div
+                class="group bg-[#F8F4F4] w-[90px] h-[90px] flex justify-center items-center rounded-full flex-shrink-0"
+              >
+                <img
+                  src="./images/s5/icnn4.png"
+                  class="w-[50.5px] h-[50.5px]"
+                  alt=""
+                />
+              </div>
+              <p
+                style="font-family: monster_regular"
+                class="font-[500] text-[20px] text-white text-center sm:text-left"
+              >
+                Quality schools, healthcare, and recreation at accessible
+                prices.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side Div -->
+        <div class="flex-1 flex flex-col gap-6 items-center lg:items-start">
+          <div
+            class="w-full max-w-[700px] h-auto lg:h-[769px] bg-white flex justify-center items-center -mt-0 lg:-mt-60"
+          >
+            <img
+              src="./images/s5/map.png"
+              class="w-full max-w-[660px] h-auto lg:h-[729px]"
+              alt=""
+            />
+          </div>
+          <button
+            style="font-family: monster_mdm"
+            class="w-[194px] h-[52px] bg-black font-[500] text-[16px] text-white cursor-pointer mt-4 lg:mt-0"
+          >
+            Explore More
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- This Is Section 6 -->
+    <section
+      class="s6 w-screen z-50 bg-white min-h-screen relative flex flex-col lg:flex-row justify-end items-end lg:items-end"
+    >
+      <!-- Absolute Position Yellow Div -->
+      <div
+        class="absolute right-0 top-0 lg:-top-14 w-full lg:w-[75%] h-auto lg:h-[626px] bg-[#F7A51D] p-[35px] text-center md:text-start md:pl-12 md:pt-12 z-0"
+      >
+        <p
+          style="font-family: lato_bold"
+          class="text-[28px] sm:text-[36px] lg:text-[46px] font-[600] text-white"
+        >
+          Share your details to get first access to launches, floor plans, and
+          previews. Our team will guide you through locations, timelines,
+          pricing, and solutions tailored to your family or business.
+        </p>
+      </div>
+
+      <!-- Slider -->
+      <div
+        class="slider w-full flex flex-col sm:flex-row z-10 gap-6 sm:gap-8 lg:gap-12 items-center lg:items-center mt-[650px] lg:mt-0 px-4 sm:px-0"
+      >
+        <div class="sliderCard w-full sm:w-[573px] h-auto sm:h-[446px]">
+          <img
+            src="/images/s6/sanskaarslider1.png"
+            class="w-full h-full object-cover"
+            alt=""
+          />
+        </div>
+        <div class="sliderCard w-full sm:w-[461px] h-auto sm:h-[358px]">
+          <img
+            src="/images/s6/sanskaarslider2.png"
+            class="w-full h-full object-cover"
+            alt=""
+          />
+        </div>
+        <div class="sliderCard w-full sm:w-[573px] h-auto sm:h-[446px]">
+          <img
+            src="/images/s6/sanskaarslider3.png"
+            class="w-full h-full object-cover"
+            alt=""
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="text-white py-12 bg-white w-full min-h-[65vh] flex relative"
+      style="
+        background-image: url(./images/s2/s2Footer.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: 999;
+      "
+    >
+      <div
+        class="w-[90%] mx-auto flex flex-wrap gap-10 lg:gap-[118px] md:ml-40 md:mt-20"
+      >
+        <!-- Logo + About -->
+        <div class="flex flex-col w-[468px] gap-[21px]">
+          <img
+            src="./images/sanskarLog.png"
+            alt="Sanskar Logo"
+            class="w-[180px] sm:w-[192px] h-auto"
+          />
+          <h2
+            style="font-family: lato_bold"
+            class="font-semibold text-2xl sm:text-3xl text-black leading-snug"
+          >
+            Build Your Next Chapter with Sanskar
+          </h2>
+          <p
+            style="font-family: lato_regular"
+            class="text-base font-normal text-[#00000099] leading-relaxed"
+          >
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry.
+          </p>
+        </div>
+
+        <!-- Explore -->
+        <div class="sm:pl-4 md:pl-0 md:flex md:flex-col gap-[25px]">
+          <h3 class="font-[500] text-[18px] text-black mb-4">Explore</h3>
+          <ul
+            class="space-y-2 flex flex-col gap-[25px]"
+            style="font-family: lato_regular"
+          >
+            <li>
+              <a
+                href="#"
+                class="text-[16px] font-[400] text-[#444444] hover:text-black"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-[16px] font-[400] text-[#444444] hover:text-black"
+                >About Us</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-[16px] font-[400] text-[#444444] hover:text-black"
+                >Noida</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="text-[16px] font-[400] text-[#444444] hover:text-black"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="md:w-[240px]">
+          <ul class="space-y-4">
+            <li>
+              <p
+                style="font-family: lato_bold"
+                class="text-black font-[500] text-[18px] mb-[5px]"
+              >
+                Phone:
+              </p>
+              <a
+                style="font-family: lato_regular"
+                href="tel:+91XXXXXXXXXX"
+                class="text-[#444444] text-[16px] hover:text-black"
+                >+91-XXXXXXXXXX</a
+              >
+            </li>
+            <li>
+              <p
+                style="font-family: lato_bold"
+                class="text-black font-[500] text-[18px] mb-[5px]"
+              >
+                Email:
+              </p>
+              <a
+                style="font-family: lato_regular"
+                href="mailto:info@sanskar.com"
+                class="text-[#444444] text-[16px] hover:text-black"
+                >info@sanskar.com</a
+              >
+            </li>
+            <li>
+              <p
+                style="font-family: lato_bold"
+                class="text-black font-[500] text-[18px] mb-[5px]"
+              >
+                Address:
+              </p>
+              <p
+                style="font-family: lato_regular"
+                class="text-[#444444] text-[16px] leading-relaxed"
+              >
+                H. NO. xxx, 2nd Floor, Lorem Ipsum is simply dummy text ever
+                since the 1500s.
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="flex flex-col gap-[14px]">
+          <h3
+            style="font-family: lato_regular"
+            class="font-[400] text-[18px] text-black mb-1"
+          >
+            Social Media
+          </h3>
+          <ul
+            style="font-family: lato_regular"
+            class="space-y-2 flex flex-col gap-[12px]"
+          >
+            <li>
+              <a href="#" class="font-[400] text-[17px] text-black">Facebook</a>
+            </li>
+            <li>
+              <a href="#" class="font-[400] text-[17px] text-black">Twitter</a>
+            </li>
+            <li>
+              <a href="#" class="font-[400] text-[17px] text-black"
+                >Instagram</a
+              >
+            </li>
+            <li>
+              <a href="#" class="font-[400] text-[17px] text-black">LinkedIn</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bottom Bar -->
+    <div
+      class="w-full bg-white text-[#00000099] flex justify-center items-center h-[70px] text-[16px] font-[400] px-4 text-center"
+    >
+      <p style="font-family: lato_regular">
+        © 2025 Sanskar Developers. All rights reserved.
+      </p>
+    </div>
+
+    <!-- GSAP Animations -->
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
