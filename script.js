@@ -87,8 +87,7 @@ window.addEventListener("load", () => {
   });
 });
 
-
-// The Section 2 Scroll Trigger And Other Animations Is Starting From Here 
+// The Section 2 Scroll Trigger And Other Animations Is Starting From Here
 
 // Animate Left Side Text
 gsap.from(".s2LeftSideDiv", {
@@ -97,7 +96,7 @@ gsap.from(".s2LeftSideDiv", {
     start: "top 80%", // when top of element hits 80% of viewport
     toggleActions: "play none none none",
   },
- 
+
   y: 50, // fade in from below
   duration: 1,
   ease: "power2.out",
@@ -111,7 +110,7 @@ gsap.utils.toArray(".s2CardDiv").forEach((card) => {
       start: "top 85%",
       toggleActions: "play none none none",
     },
-   
+
     y: 50,
     duration: 1,
     ease: "power2.out",
@@ -127,7 +126,7 @@ gsap.utils.toArray(".s2Card2").forEach((card) => {
       start: "top 85%",
       toggleActions: "play none none none",
     },
-   
+
     scale: 0.8, // fade-in with slight scale-up
     duration: 0.8,
     ease: "back.out(1.2)",
@@ -141,13 +140,12 @@ gsap.from(".s2Elips", {
     trigger: ".s2",
     start: "top bottom",
   },
- 
+
   duration: 1.5,
   ease: "power1.out",
 });
 
-// Section 3 Animations Is Starting From Here 
-
+// Section 3 Animations Is Starting From Here
 
 // Initialize Lenis
 const lenis = new Lenis();
@@ -160,14 +158,9 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
-
-
-
-
-// Slider Logic 
+// Slider Logic
 console.clear();
 
-;
 const sliders = gsap.utils.toArray(".slider");
 const slidesArray = sliders.map((slider) =>
   gsap.utils.toArray(".slide", slider)
@@ -180,7 +173,7 @@ let isTweening = false;
 slidesArray.forEach((slides) => {
   slides.forEach((slide, i) => {
     gsap.set(slide, {
-      xPercent: i > 0 && 100
+      xPercent: i > 0 && 100,
     });
   });
 });
@@ -202,13 +195,13 @@ const gotoSlide = (value) => {
     gsap.set(nextSlides, { xPercent: 100 });
     gsap.to(currentSlides, {
       xPercent: -100,
-      onComplete: () => (isTweening = false)
+      onComplete: () => (isTweening = false),
     });
   } else {
     gsap.set(nextSlides, { xPercent: -100 });
     gsap.to(currentSlides, {
       xPercent: 100,
-      onComplete: () => (isTweening = false)
+      onComplete: () => (isTweening = false),
     });
   }
   gsap.to(nextSlides, { xPercent: 0 });
@@ -217,8 +210,7 @@ const gotoSlide = (value) => {
 next.addEventListener("click", () => gotoSlide(1));
 prev.addEventListener("click", () => gotoSlide(-1));
 
-
-// Second Slider Logic 
+// Second Slider Logic
 
 const sliders2 = gsap.utils.toArray(".slider2");
 const slidesArray2 = sliders2.map((slider) =>
@@ -232,7 +224,7 @@ let isTweening2 = false;
 slidesArray2.forEach((slides) => {
   slides.forEach((slide, i) => {
     gsap.set(slide, {
-      xPercent: i > 0 && 100
+      xPercent: i > 0 && 100,
     });
   });
 });
@@ -254,16 +246,57 @@ const gotoSlide2 = (value) => {
     gsap.set(nextSlides, { xPercent: 100 });
     gsap.to(currentSlides, {
       xPercent: -100,
-      onComplete: () => (isTweening2 = false)
+      onComplete: () => (isTweening2 = false),
     });
   } else {
     gsap.set(nextSlides, { xPercent: -100 });
     gsap.to(currentSlides, {
       xPercent: 100,
-      onComplete: () => (isTweening2 = false)
+      onComplete: () => (isTweening2 = false),
     });
   }
   gsap.to(nextSlides, { xPercent: 0 });
 };
 next2.addEventListener("click", () => gotoSlide2(1));
 prev2.addEventListener("click", () => gotoSlide2(-1));
+
+// Bottom Carousel Logic Is Written Here
+$(".owl-carousel").owlCarousel({
+  stagePadding: 200,
+  loop: true,
+  margin: 10,
+  nav: false,
+  items: 1,
+  lazyLoad: true,
+  nav: true,
+  responsive: {
+    0: {
+      items: 1,
+      stagePadding: 60,
+    },
+    600: {
+      items: 1,
+      stagePadding: 100,
+    },
+    1000: {
+      items: 1,
+      stagePadding: 200,
+    },
+    1200: {
+      items: 1,
+      stagePadding: 250,
+    },
+    1400: {
+      items: 1,
+      stagePadding: 300,
+    },
+    1600: {
+      items: 1,
+      stagePadding: 350,
+    },
+    1800: {
+      items: 1,
+      stagePadding: 400,
+    },
+  },
+});
