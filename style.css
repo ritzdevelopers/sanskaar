@@ -42,29 +42,6 @@
   overflow: hidden;
 }
 
-.slide {
-  width: 100%;
-  height: 100%; /* Fill the slider container */
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: white;
-  font-size: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Second Slider Styling  */
-.wrapper2 {
-  width: 100%;
-  height: 100%; /* Use container's height instead of 100vh */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .slider2 {
   width: 100%;
   height: 100%; /* Make slider fit its container */
@@ -171,9 +148,530 @@ body {
 }
 .owl-carousel {
   margin-top: 22rem;
+  z-index: 999999999 !important;
 }
 
 .owl-controls {
   position: absolute;
   margin-top: 300px;
+}
+
+/* Button Hover Effects */
+.open-modal-btn {
+  transition: all 0.3s ease !important;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.open-modal-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+.open-modal-btn:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Black button hover - works with Tailwind bg-black class */
+button.open-modal-btn.bg-black:hover {
+  background-color: #333333 !important;
+}
+
+/* All black buttons - check if bg-black is in class list */
+button.open-modal-btn[class*="bg-black"]:hover {
+  background-color: #333333 !important;
+}
+
+/* Orange button hover - for bg-[#F7A51D] */
+button.open-modal-btn[class*="F7A51D"]:hover {
+  background-color: #e5950c !important;
+}
+
+/* Ensure pointer cursor on all modal buttons */
+button.open-modal-btn {
+  cursor: pointer !important;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999999;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.hidden {
+  display: none !important;
+}
+
+.modal-overlay:not(.hidden) {
+  display: flex !important;
+  opacity: 1;
+}
+
+.modal-container {
+  background: white;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay:not(.hidden) .modal-container {
+  transform: scale(1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  z-index: 10;
+}
+
+.modal-close-btn:hover {
+  background-color: #f3f3f3;
+}
+
+.modal-close-btn svg {
+  color: #000;
+  width: 24px;
+  height: 24px;
+}
+
+.modal-content {
+  padding: 40px 30px;
+}
+
+.modal-title {
+  font-size: 32px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.modal-subtitle {
+  font-size: 16px;
+  color: #00000099;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group-half {
+  flex: 1;
+  min-width: 0;
+}
+
+.form-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+}
+
+.form-input,
+.form-textarea {
+  padding: 14px 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: monster_regular;
+  color: #000;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #f7a51d;
+  box-shadow: 0 0 0 3px rgba(247, 165, 29, 0.1);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #999;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.form-submit-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 10px;
+}
+
+.form-submit-btn:hover {
+  background-color: #333;
+  transform: translateY(-1px);
+}
+
+.form-submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design for Modal */
+@media (max-width: 768px) {
+  .modal-container {
+    max-width: 100%;
+    border-radius: 16px;
+    margin: 10px;
+  }
+
+  .modal-content {
+    padding: 30px 20px;
+  }
+
+  .modal-title {
+    font-size: 28px;
+  }
+
+  .modal-subtitle {
+    font-size: 14px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group-half {
+    width: 100%;
+  }
+
+  .form-input,
+  .form-textarea {
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+
+  .form-submit-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 25px 16px;
+  }
+
+  .modal-title {
+    font-size: 24px;
+  }
+
+  .modal-close-btn {
+    top: 15px;
+    right: 15px;
+  }
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+}
+
+.mySlides {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Second slider slides */
+.mySlides2 {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.mySlides2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+.slideshow-container2 {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+}
+
+.mySlides img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Dots container */
+.slideshow-container + br + div {
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* Dots container for second slider (absolutely positioned) */
+.relative > div[class*="absolute"] {
+  z-index: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  cursor: pointer;
+}
+
+.dot:hover {
+  background-color: #717171;
+}
+
+.dot.active {
+  background-color: #717171;
+}
+
+/* Second slider dots styling */
+.dot2 {
+  height: 15px;
+  width: 15px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  cursor: pointer;
+  z-index: 10;
+  position: relative;
+}
+
+.dot2:hover {
+  background-color: #717171;
+}
+
+.dot2.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {
+    font-size: 11px;
+  }
+}
+
+/* Tablet Slider Responsiveness (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Slider container adjustments for tablets */
+  .slideshow-container,
+  .slideshow-container2 {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+  }
+
+  /* Ensure slider images fit properly on tablets */
+  .mySlides,
+  .mySlides2 {
+    width: 100%;
+    height: 100%;
+  }
+
+  .mySlides img,
+  .mySlides2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  /* Adjust slider container div to prevent overflow */
+  .sliderContainer > div,
+  .relative > div {
+    width: 100% !important;
+    max-width: 100%;
+  }
+
+  /* Ensure proper height for tablet sliders */
+  .lftSec > div > div,
+  .sliderContainer > div {
+    height: 400px !important;
+  }
+
+  /* Dot positioning adjustments for tablets */
+  .slideshow-container + br + div,
+  .slideshow-container2 + br + div {
+    position: relative;
+    text-align: center;
+    padding: 20px 0 10px 0;
+    z-index: 10;
+  }
+
+  /* Dot styling for tablets */
+  .dot,
+  .dot2 {
+    height: 14px;
+    width: 14px;
+    margin: 0 6px;
+  }
+
+  /* Number text adjustments */
+  .numbertext {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  /* Caption text adjustments */
+  .text {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  /* Ensure slider wrapper maintains aspect ratio */
+  .wrapper {
+    height: 400px;
+  }
+
+  /* Prevent horizontal overflow in slider sections */
+  .lftSec,
+  .rghtSec {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  /* Fix for slider container absolute positioning on tablets - target divs with absolute and bottom classes */
+  div[class*="absolute"][class*="bottom"] {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  /* Ensure proper padding for slider containers */
+  .sliderContainer {
+    padding-bottom: 20px;
+  }
 }

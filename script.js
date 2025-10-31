@@ -147,10 +147,20 @@ gsap.from(".s2Elips", {
 
 // Section 3 Animations Is Starting From Here
 
-// Initialize Lenis
-const lenis = new Lenis();
+// Initialize Lenis with advanced smoothness settings
+const lenis = new Lenis({
+  duration: 1.6, // Higher = slower & smoother (try 1.8 or 2 for even softer feel)
+  easing: (t) => 1 - Math.pow(1 - t, 3), // cubic ease-out for natural deceleration
+  direction: "vertical",
+  gestureDirection: "vertical",
+  smoothWheel: true,
+  smoothTouch: true, // enable smooth on touch devices too
+  touchMultiplier: 1.8, // more glide on touch scrolls
+  infinite: false, // disable looping scroll
+  lerp: 0.08, // linear interpolation factor (lower = smoother, slower)
+});
 
-// Use requestAnimationFrame to continuously update the scroll
+// Continuous smooth update loop
 function raf(time) {
   lenis.raf(time);
   requestAnimationFrame(raf);
@@ -158,107 +168,11 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
-// Slider Logic
-console.clear();
-
-const sliders = gsap.utils.toArray(".slider");
-const slidesArray = sliders.map((slider) =>
-  gsap.utils.toArray(".slide", slider)
-);
-const next = document.getElementById("next");
-const prev = document.getElementById("prev");
-let currentIndex = 0;
-let isTweening = false;
-
-slidesArray.forEach((slides) => {
-  slides.forEach((slide, i) => {
-    gsap.set(slide, {
-      xPercent: i > 0 && 100,
-    });
-  });
-});
-
-const gotoSlide = (value) => {
-  if (isTweening) return;
-  isTweening = true;
-  const first = slidesArray[0];
-  const currentSlides = [];
-  const nextSlides = [];
-  slidesArray.forEach((slides) => currentSlides.push(slides[currentIndex]));
-  if (first[currentIndex + value]) {
-    currentIndex += value;
-  } else {
-    currentIndex = value > 0 ? 0 : first.length - 1;
-  }
-  slidesArray.forEach((slides) => nextSlides.push(slides[currentIndex]));
-  if (value > 0) {
-    gsap.set(nextSlides, { xPercent: 100 });
-    gsap.to(currentSlides, {
-      xPercent: -100,
-      onComplete: () => (isTweening = false),
-    });
-  } else {
-    gsap.set(nextSlides, { xPercent: -100 });
-    gsap.to(currentSlides, {
-      xPercent: 100,
-      onComplete: () => (isTweening = false),
-    });
-  }
-  gsap.to(nextSlides, { xPercent: 0 });
-};
-
-next.addEventListener("click", () => gotoSlide(1));
-prev.addEventListener("click", () => gotoSlide(-1));
+// Optional: Sync with ScrollTrigger (if using GSAP)
+// gsap.ticker.add((time) => lenis.raf(time * 1000));
+// gsap.ticker.lagSmoothing(0);
 
 // Second Slider Logic
-
-const sliders2 = gsap.utils.toArray(".slider2");
-const slidesArray2 = sliders2.map((slider) =>
-  gsap.utils.toArray(".slide2", slider)
-);
-const next2 = document.getElementById("next2");
-const prev2 = document.getElementById("prev2");
-let currentIndex2 = 0;
-let isTweening2 = false;
-
-slidesArray2.forEach((slides) => {
-  slides.forEach((slide, i) => {
-    gsap.set(slide, {
-      xPercent: i > 0 && 100,
-    });
-  });
-});
-
-const gotoSlide2 = (value) => {
-  if (isTweening2) return;
-  isTweening2 = true;
-  const first = slidesArray2[0];
-  const currentSlides = [];
-  const nextSlides = [];
-  slidesArray2.forEach((slides) => currentSlides.push(slides[currentIndex2]));
-  if (first[currentIndex2 + value]) {
-    currentIndex2 += value;
-  } else {
-    currentIndex2 = value > 0 ? 0 : first.length - 1;
-  }
-  slidesArray2.forEach((slides) => nextSlides.push(slides[currentIndex2]));
-  if (value > 0) {
-    gsap.set(nextSlides, { xPercent: 100 });
-    gsap.to(currentSlides, {
-      xPercent: -100,
-      onComplete: () => (isTweening2 = false),
-    });
-  } else {
-    gsap.set(nextSlides, { xPercent: -100 });
-    gsap.to(currentSlides, {
-      xPercent: 100,
-      onComplete: () => (isTweening2 = false),
-    });
-  }
-  gsap.to(nextSlides, { xPercent: 0 });
-};
-next2.addEventListener("click", () => gotoSlide2(1));
-prev2.addEventListener("click", () => gotoSlide2(-1));
 
 // Bottom Carousel Logic Is Written Here
 $(".owl-carousel").owlCarousel({
@@ -300,3 +214,438 @@ $(".owl-carousel").owlCarousel({
     },
   },
 });
+
+// Modal Functionality - Wait for DOM to be ready
+document.addEventListener("DOMContentLoaded", () => {
+  const contactModal = document.getElementById("contactModal");
+  const closeModalBtn = document.getElementById("closeModal");
+  const contactForm = document.getElementById("contactForm");
+  const openModalButtons = document.querySelectorAll(".open-modal-btn");
+
+  console.log("Modal elements found:", {
+    modal: contactModal,
+    closeBtn: closeModalBtn,
+    form: contactForm,
+    buttons: openModalButtons.length,
+  });
+
+  // Function to open modal
+  function openModal() {
+    if (!contactModal) {
+      console.error("Modal not found!");
+      return;
+    }
+    console.log("Opening modal...");
+    contactModal.classList.remove("hidden");
+    document.body.style.overflow = "hidden"; // Prevent background scrolling
+    // Force display to be visible for GSAP
+    contactModal.style.display = "flex";
+
+    gsap.fromTo(
+      contactModal,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.3, ease: "power2.out" }
+    );
+    gsap.fromTo(
+      contactModal.querySelector(".modal-container"),
+      { scale: 0.9, y: 20 },
+      { scale: 1, y: 0, duration: 0.3, ease: "power2.out" }
+    );
+  }
+
+  // Function to close modal
+  function closeModalFunc() {
+    if (!contactModal) return;
+    console.log("Closing modal...");
+    gsap.to(contactModal, {
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.in",
+      onComplete: () => {
+        contactModal.classList.add("hidden");
+        contactModal.style.display = "none";
+        document.body.style.overflow = ""; // Restore scrolling
+      },
+    });
+    gsap.to(contactModal.querySelector(".modal-container"), {
+      scale: 0.9,
+      y: 20,
+      duration: 0.3,
+      ease: "power2.in",
+    });
+  }
+
+  // Add event listeners to all buttons with open-modal-btn class
+  if (openModalButtons.length > 0) {
+    console.log(
+      "Adding click listeners to",
+      openModalButtons.length,
+      "buttons"
+    );
+    openModalButtons.forEach((button, index) => {
+      console.log(`Button ${index + 1}:`, button);
+      button.addEventListener("click", (e) => {
+        console.log("Button clicked!", e);
+        e.preventDefault();
+        e.stopPropagation();
+        openModal();
+      });
+    });
+  } else {
+    console.warn("No buttons with .open-modal-btn class found!");
+  }
+
+  // Close modal when clicking close button
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", closeModalFunc);
+  }
+
+  // Close modal when clicking outside the modal
+  if (contactModal) {
+    contactModal.addEventListener("click", (e) => {
+      if (e.target === contactModal) {
+        closeModalFunc();
+      }
+    });
+  }
+
+  // Close modal on ESC key
+  document.addEventListener("keydown", (e) => {
+    if (
+      e.key === "Escape" &&
+      contactModal &&
+      !contactModal.classList.contains("hidden")
+    ) {
+      closeModalFunc();
+    }
+  });
+
+  // Handle form submission
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      // Here you can add your form submission logic
+      // For example, sending data to a server or showing a success message
+      alert("Thank you for your interest! We'll get back to you soon.");
+      contactForm.reset();
+      closeModalFunc();
+    });
+  }
+});
+
+// Slideshow Functionality
+document.addEventListener("DOMContentLoaded", () => {
+  let slideIndex = 0;
+  let slideshowTimeout;
+
+  function showSlides() {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+
+    // Check if slides exist
+    if (slides.length === 0) {
+      return; // Exit if no slides found
+    }
+
+    // Hide all slides
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+
+    slideIndex++;
+    if (slideIndex > slides.length) {
+      slideIndex = 1;
+    }
+
+    // Remove active class from all dots
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    // Show current slide and activate corresponding dot
+    if (slides[slideIndex - 1]) {
+      slides[slideIndex - 1].style.display = "block";
+    }
+    if (dots[slideIndex - 1]) {
+      dots[slideIndex - 1].className += " active";
+    }
+
+    // Clear previous timeout
+    if (slideshowTimeout) {
+      clearTimeout(slideshowTimeout);
+    }
+
+    // Set timeout for next slide
+    slideshowTimeout = setTimeout(showSlides, 2000); // Change image every 2 seconds
+  }
+
+  // Initialize slideshow if elements exist
+  const slides = document.getElementsByClassName("mySlides");
+  const dots = document.getElementsByClassName("dot");
+
+  if (slides.length > 0) {
+    // Show first slide immediately
+    if (slides[0]) {
+      slides[0].style.display = "block";
+    }
+    if (dots[0]) {
+      dots[0].className += " active";
+    }
+    // Start slideshow from slide 1 (next will be slide 2)
+    slideIndex = 1;
+    setTimeout(showSlides, 2000);
+
+    // Add click handlers to dots for manual navigation
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].addEventListener("click", () => {
+        // Clear timeout
+        if (slideshowTimeout) {
+          clearTimeout(slideshowTimeout);
+        }
+
+        // Set slide index
+        slideIndex = i;
+
+        // Show selected slide
+        let j;
+        let allSlides = document.getElementsByClassName("mySlides");
+        let allDots = document.getElementsByClassName("dot");
+
+        for (j = 0; j < allSlides.length; j++) {
+          allSlides[j].style.display = "none";
+        }
+        for (j = 0; j < allDots.length; j++) {
+          allDots[j].className = allDots[j].className.replace(" active", "");
+        }
+
+        allSlides[slideIndex].style.display = "block";
+        allDots[slideIndex].className += " active";
+
+        // Resume slideshow
+        slideIndex++;
+        if (slideIndex >= slides.length) {
+          slideIndex = 0;
+        }
+        slideshowTimeout = setTimeout(showSlides, 2000);
+      });
+    }
+  }
+});
+
+// Slideshow Functionality - First Slider
+document.addEventListener("DOMContentLoaded", () => {
+  // First Slider
+  let slideIndex = 0;
+  let slideshowTimeout;
+
+  function showSlides() {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+
+    // Check if slides exist
+    if (slides.length === 0) {
+      return; // Exit if no slides found
+    }
+
+    // Hide all slides
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+
+    slideIndex++;
+    if (slideIndex > slides.length) {
+      slideIndex = 1;
+    }
+
+    // Remove active class from all dots
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    // Show current slide and activate corresponding dot
+    if (slides[slideIndex - 1]) {
+      slides[slideIndex - 1].style.display = "block";
+    }
+    if (dots[slideIndex - 1]) {
+      dots[slideIndex - 1].className += " active";
+    }
+
+    // Clear previous timeout
+    if (slideshowTimeout) {
+      clearTimeout(slideshowTimeout);
+    }
+
+    // Set timeout for next slide
+    slideshowTimeout = setTimeout(showSlides, 2000); // Change image every 2 seconds
+  }
+
+  // Initialize first slideshow if elements exist
+  const slides = document.getElementsByClassName("mySlides");
+  const dots = document.getElementsByClassName("dot");
+
+  if (slides.length > 0) {
+    // Show first slide immediately
+    if (slides[0]) {
+      slides[0].style.display = "block";
+    }
+    if (dots[0]) {
+      dots[0].className += " active";
+    }
+    // Start slideshow from slide 1 (next will be slide 2)
+    slideIndex = 1;
+    setTimeout(showSlides, 2000);
+
+    // Add click handlers to dots for manual navigation
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].addEventListener("click", () => {
+        // Clear timeout
+        if (slideshowTimeout) {
+          clearTimeout(slideshowTimeout);
+        }
+
+        // Set slide index
+        slideIndex = i;
+
+        // Show selected slide
+        let j;
+        let allSlides = document.getElementsByClassName("mySlides");
+        let allDots = document.getElementsByClassName("dot");
+
+        for (j = 0; j < allSlides.length; j++) {
+          allSlides[j].style.display = "none";
+        }
+        for (j = 0; j < allDots.length; j++) {
+          allDots[j].className = allDots[j].className.replace(" active", "");
+        }
+
+        allSlides[slideIndex].style.display = "block";
+        allDots[slideIndex].className += " active";
+
+        // Resume slideshow
+        slideIndex++;
+        if (slideIndex >= slides.length) {
+          slideIndex = 0;
+        }
+        slideshowTimeout = setTimeout(showSlides, 2000);
+      });
+    }
+  }
+
+  // Second Slider
+  let slideIndex2 = 0;
+  let slideshowTimeout2;
+
+  function showSlides2() {
+    let i;
+    let slides = document.getElementsByClassName("mySlides2");
+    let dots = document.getElementsByClassName("dot2");
+
+    // Check if slides exist
+    if (slides.length === 0) {
+      return; // Exit if no slides found
+    }
+
+    // Hide all slides
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+
+    slideIndex2++;
+    if (slideIndex2 > slides.length) {
+      slideIndex2 = 1;
+    }
+
+    // Remove active class from all dots
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    // Show current slide and activate corresponding dot
+    if (slides[slideIndex2 - 1]) {
+      slides[slideIndex2 - 1].style.display = "block";
+    }
+    if (dots[slideIndex2 - 1]) {
+      dots[slideIndex2 - 1].className += " active";
+    }
+
+    // Clear previous timeout
+    if (slideshowTimeout2) {
+      clearTimeout(slideshowTimeout2);
+    }
+
+    // Set timeout for next slide
+    slideshowTimeout2 = setTimeout(showSlides2, 2000); // Change image every 2 seconds
+  }
+
+  // Initialize second slideshow if elements exist
+  const slides2 = document.getElementsByClassName("mySlides2");
+  const dots2 = document.getElementsByClassName("dot2");
+
+  if (slides2.length > 0) {
+    // Show first slide immediately
+    if (slides2[0]) {
+      slides2[0].style.display = "block";
+    }
+    if (dots2[0]) {
+      dots2[0].className += " active";
+    }
+    // Start slideshow from slide 1 (next will be slide 2)
+    slideIndex2 = 1;
+    setTimeout(showSlides2, 2000);
+
+    // Add click handlers to dots for manual navigation
+    for (let i = 0; i < dots2.length; i++) {
+      dots2[i].addEventListener("click", () => {
+        // Clear timeout
+        if (slideshowTimeout2) {
+          clearTimeout(slideshowTimeout2);
+        }
+
+        // Set slide index
+        slideIndex2 = i;
+
+        // Show selected slide
+        let j;
+        let allSlides = document.getElementsByClassName("mySlides2");
+        let allDots = document.getElementsByClassName("dot2");
+
+        for (j = 0; j < allSlides.length; j++) {
+          allSlides[j].style.display = "none";
+        }
+        for (j = 0; j < allDots.length; j++) {
+          allDots[j].className = allDots[j].className.replace(" active", "");
+        }
+
+        allSlides[slideIndex2].style.display = "block";
+        allDots[slideIndex2].className += " active";
+
+        // Resume slideshow
+        slideIndex2++;
+        if (slideIndex2 >= slides2.length) {
+          slideIndex2 = 0;
+        }
+        slideshowTimeout2 = setTimeout(showSlides2, 2000);
+      });
+    }
+  }
+});
+
+const tabHandler = (name) => {
+  const btns = document.querySelectorAll(".prjSec");
+  if (name === "Highlife") { 
+
+  } else if (name === "Eternia") { 
+
+  }
+}
+
+
+const tabNavigationHandler = (name) => {
+  if (name === "Highlife") {
+   window.open("https://highlife.greatvaluerealty.com", "_blank");  
+  } else if (name === "Eternia") {
+    window.open("https://eternia.greatvaluerealty.com", "_blank");
+  }
+};

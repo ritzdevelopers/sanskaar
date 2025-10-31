@@ -46,7 +46,7 @@
       </div>
 
       <!-- Desktop Menu -->
-      <div class="hidden md:block">
+      <div class="hidden lg:block">
         <ul
           style="font-family: monster_mdm"
           class="flex font-[500] text-[16px] text-black gap-[60px]"
@@ -58,17 +58,17 @@
       </div>
 
       <!-- Desktop Button -->
-      <div class="hidden md:block">
+      <div class="hidden lg:block">
         <button
           style="font-family: monster_mdm"
-          class="w-[194px] h-[52px] text-white bg-black rounded-[4px] shadow-md shadow-[#0000001A]"
+          class="open-modal-btn w-[194px] h-[52px] text-white bg-black rounded-[4px] shadow-md shadow-[#0000001A]"
         >
           Book A Site Visit
         </button>
       </div>
 
       <!-- Mobile Menu Button -->
-      <div class="md:hidden">
+      <div class="lg:hidden">
         <button id="menuBtn" class="focus:outline-none">
           <!-- Hamburger SVG -->
           <svg
@@ -117,7 +117,7 @@
       <a href="#" style="font-family: monster_mdm">CONTACT US</a>
       <button
         style="font-family: monster_mdm"
-        class="w-[194px] h-[52px] text-white bg-black rounded-[4px] shadow-md shadow-[#0000001A]"
+        class="open-modal-btn w-[194px] h-[52px] text-white bg-black rounded-[4px] shadow-md shadow-[#0000001A]"
       >
         Book A Site Visit
       </button>
@@ -136,7 +136,7 @@
       <!-- Center Align Div -->
       <div class="text-white w-full text-center md:text-left">
         <!-- Absolute Circle div -->
-        <div class="relative relative md:w-[711px] text-white w-full">
+        <div class="relative relative md:w-[711px] text-white w-full z-0">
           <div
             class="w-[148px] h-[148px] bg-[#F7A51D] rounded-full absolute right-[10%] md:right-[10rem] top-10 md:top-28 -translate-x-1/2 -translate-y-1/3 z-0 opacity-0 circleAnim"
           ></div>
@@ -212,11 +212,11 @@
 
       <!-- Main Content Container -->
       <div
-        class="relative s2MainContainer w-full flex flex-col md:flex-row justify-between items-start z-10 gap-10"
+        class="relative s2MainContainer w-full flex flex-col lg:flex-row justify-between items-start z-10 gap-10"
       >
         <!-- Left Side Div -->
         <div
-          class="w-full s2LeftSideDiv md:w-[407px] flex flex-col gap-6 text-center md:text-left"
+          class="w-full s2LeftSideDiv lg:w-[407px] flex flex-col gap-6 text-center md:text-left"
         >
           <p
             style="font-family: monster_regular"
@@ -239,7 +239,7 @@
           </p>
           <button
             style="font-family: monster_mdm"
-            class="font-[500] text-[14px] sm:text-[16px] bg-[#F7A51D] w-[160px] sm:w-[180px] h-[48px] sm:h-[52px] rounded-lg shadow-md hover:bg-[#e5950c] transition duration-300 text-white mx-auto md:mx-0"
+            class="open-modal-btn font-[500] text-[14px] sm:text-[16px] bg-[#F7A51D] w-[160px] sm:w-[180px] h-[48px] sm:h-[52px] rounded-lg shadow-md hover:bg-[#e5950c] transition duration-300 text-white mx-auto md:mx-0"
           >
             Book A Site Visit
           </button>
@@ -247,14 +247,14 @@
 
         <!-- Right Side Div -->
         <div
-          class="flex s2RightSideDiv flex-wrap w-full md:w-[750px] justify-center md:justify-around gap-6 sm:gap-8"
+          class="flex s2RightSideDiv flex-wrap w-full md:w-[750px] justify-start lg:justify-around gap-6 lg:gap-8"
         >
           <!-- Card -->
           <div
             class="s2CardDiv w-full sm:w-[280px] md:w-[320px] min-h-[188px] p-6 flex flex-col gap-4 hover:shadow-xl transition duration-300 relative z-10 text-center sm:text-left"
           >
             <img
-              src="./images/s2/home_icn.png"
+              src="./images/new-icn-1.png"
               class="w-[50px] sm:w-[60px] h-[50px] sm:h-[60px] mx-auto sm:mx-0"
               alt=""
             />
@@ -277,7 +277,7 @@
             class="s2CardDiv w-full sm:w-[280px] md:w-[320px] min-h-[188px] p-6 flex flex-col gap-4 hover:shadow-xl transition duration-300 relative z-10 text-center sm:text-left"
           >
             <img
-              src="./images/s2/map_icn.png"
+              src="./images/new-icn-2.png"
               class="w-[50px] sm:w-[60px] h-[50px] sm:h-[60px] mx-auto sm:mx-0"
               alt=""
             />
@@ -299,7 +299,7 @@
             class="s2CardDiv w-full sm:w-[280px] md:w-[320px] min-h-[188px] p-6 flex flex-col gap-4 hover:shadow-xl transition duration-300 relative z-10 text-center sm:text-left"
           >
             <img
-              src="./images/s2/crcle_icn.png"
+              src="./images/new-icn-3.png"
               class="w-[50px] sm:w-[60px] h-[50px] sm:h-[60px] mx-auto sm:mx-0"
               alt=""
             />
@@ -322,7 +322,7 @@
             class="s2CardDiv w-full sm:w-[280px] md:w-[320px] min-h-[188px] p-6 flex flex-col gap-4 hover:shadow-xl transition duration-300 relative z-10 text-center sm:text-left"
           >
             <img
-              src="./images/s2/diamond_icn.png"
+              src="./images/new-icn-4.png"
               class="w-[50px] sm:w-[60px] h-[50px] sm:h-[60px] mx-auto sm:mx-0"
               alt=""
             />
@@ -458,12 +458,14 @@
             </h2>
             <div class="flex flex-col sm:flex-row gap-4">
               <button
+              onclick="tabNavigationHandler('Highlife')"
                 style="font-family: lato_regular"
                 class="w-[184px] sm:w-[184px] h-[49px] shadow-md font-[400] text-[24px] bg-black text-white"
               >
                 Highlife
               </button>
               <button
+                onclick="tabNavigationHandler('Eternia')"
                 style="font-family: lato_regular"
                 class="w-[184px] sm:w-[184px] h-[49px] shadow-md font-[400] text-[24px] bg-white text-black"
               >
@@ -501,103 +503,46 @@
           </div>
 
           <!-- Left & Right Sections -->
-          <div class="w-full flex flex-col md:flex-row">
+          <div class="lg:w-full w-screen  flex flex-col lg:flex-row md:flex-row-reverse">
             <!-- Left Section -->
-            <div class="lftSec w-full md:w-[611px] flex flex-col gap-4">
-              <div class="sliderContainer w-full flex flex-col gap-4">
+            <div class="lftSec w-full lg:w-[611px] flex pr-4 lg:pr-0 flex-col gap-4">
+              <div class="sliderContainer relative w-full flex flex-col gap-4">
                 <div
-                  class="slider w-full h-[300px] sm:h-[400px] md:w-[611px] md:h-[540px]"
+                  class="w-full h-[300px] sm:h-[400px] md:w-[311px] xl:w-[611px] md:h-[540px] overflow-hidden"
                 >
-                  <div class="wrapper">
-                    <div class="slider slider-one">
-                      <div class="slide">
-                        <img
-                          src="./images/s3/s3Sl.png"
-                          alt=""
-                          class="h-full w-full object-contain"
-                        />
-                      </div>
-                      <div class="slide">
-                        <img
-                          src="./images/s3/s3Sl.png"
-                          alt=""
-                          class="h-full w-full object-contain"
-                        />
-                      </div>
-                      <div class="slide">
-                        <img
-                          src="./images/s3/s3Sl.png"
-                          alt=""
-                          class="h-full w-full object-contain"
-                        />
-                      </div>
-                      <div class="slide">
-                        <img
-                          src="./images/s3/s3Sl.png"
-                          alt=""
-                          class="h-full w-full object-contain"
-                        />
-                      </div>
-                      <div class="slide">
-                        <img
-                          src="./images/s3/s3Sl.png"
-                          alt=""
-                          class="h-full w-full object-contain"
-                        />
-                      </div>
-                      <div class="slide">
-                        <img
-                          src="./images/s3/s3Sl.png"
-                          alt=""
-                          class="h-full w-full object-contain"
-                        />
-                      </div>
+                  <div class="slideshow-container">
+                    <div class="mySlides fade">
+                      <div class="numbertext">1 / 3</div>
+                      <img
+                        src="https://i.pinimg.com/736x/96/f2/f2/96f2f2ad9677253cbc3c8996a694c70d.jpg"
+                        alt="Slide 1"
+                      />
                     </div>
-                    <div class="buttons mt-8 flex gap-4 z-50">
-                      <!-- Previous Button -->
-                      <button
-                        id="prev"
-                        class="p-3 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition"
-                      >
-                        <!-- Left Arrow Icon -->
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-6 w-6"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          stroke-width="2"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M15 19l-7-7 7-7"
-                          />
-                        </svg>
-                      </button>
 
-                      <!-- Next Button -->
-                      <button
-                        id="next"
-                        class="p-3 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition"
-                      >
-                        <!-- Right Arrow Icon -->
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-6 w-6"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          stroke-width="2"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </button>
+                    <div class="mySlides fade">
+                      <div class="numbertext">2 / 3</div>
+                      <img
+                        src="https://i.pinimg.com/736x/60/4e/cc/604ecc77bd5f204aec146900c557b554.jpg"
+                        alt="Slide 2"
+                      />
                     </div>
+
+                    <div class="mySlides fade">
+                      <div class="numbertext">3 / 3</div>
+                      <img
+                        src="https://i.pinimg.com/1200x/60/27/c8/6027c8008f876c4ac4a866a4e067388f.jpg"
+                        alt="Slide 3"
+                      />
+                    </div>
+                  </div>
+                  <br />
+
+                  <div
+                    class="absolute -bottom-5 md:-bottom-20 left-1/2 transform -translate-x-1/2"
+                  >
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
                   </div>
                 </div>
                 <div
@@ -617,7 +562,7 @@
             </div>
 
             <!-- Right Section -->
-            <div class="rghtSec w-full md:w-[619px] pl-0 md:pl-12">
+            <div class="rghtSec w-full lg:w-[619px] pl-4 lg:pl-12">
               <div class="w-full flex flex-col gap-[2rem] mt-[24px]">
                 <h1
                   style="font-family: lato_bold"
@@ -637,10 +582,10 @@
                         alt="arrow"
                       />
                       <p
-                        class="text-[14px] sm:text-[18px] md:text-[24px] font-[400] leading-relaxed text-[#15151599]"
+                        class="text-[14px] sm:text-[18px] md:text-[18px] xl:text-[24px] font-[400] leading-relaxed text-[#15151599]"
                       >
-                        Modern architecture and robust construction
-A perfect harmony of style and structural strength
+                        Modern architecture and robust construction A perfect
+                        harmony of style and structural strength
                       </p>
                     </div>
                   </li>
@@ -652,10 +597,10 @@ A perfect harmony of style and structural strength
                         alt="arrow"
                       />
                       <p
-                        class="text-[14px] sm:text-[18px] md:text-[24px] font-[400] leading-relaxed text-[#15151599]"
+                        class="text-[14px] sm:text-[18px] md:text-[18px] xl:text-[24px] font-[400] leading-relaxed text-[#15151599]"
                       >
-                     Prime location with excellent road connectivity
-An address that keeps you well-linked to life
+                        Prime location with excellent road connectivity An
+                        address that keeps you well-linked to life
                       </p>
                     </div>
                   </li>
@@ -667,17 +612,18 @@ An address that keeps you well-linked to life
                         alt="arrow"
                       />
                       <p
-                        class="text-[14px] sm:text-[18px] md:text-[24px] font-[400] leading-relaxed text-[#15151599]"
+                        class="text-[14px] sm:text-[18px] md:text-[18px] xl:text-[24px] font-[400] leading-relaxed text-[#15151599]"
                       >
-                       Gated community with round-the-clock security
-Where Luxury Lives Behind Trust
+                        Gated community with round-the-clock security Where
+                        Luxury Lives Behind Trust
                       </p>
                     </div>
                   </li>
                 </ul>
                 <button
+              
                   style="font-family: monster_mdm"
-                  class="w-full sm:w-[191px] mt-4 h-[48px] font-[500] text-[16px] sm:h-[52px] bg-black text-white"
+                  class="open-modal-btn w-full sm:w-[191px] mt-4 h-[48px] font-[500] text-[16px] sm:h-[52px] bg-black text-white prjSec"
                 >
                   Explore More
                 </button>
@@ -690,7 +636,7 @@ Where Luxury Lives Behind Trust
 
     <!-- This Is Section 4  -->
     <section
-      class="s4 w-screen bg-white min-h-[140vh] z-999 flex flex-col items-center relative gap-12 py-6"
+      class="s4 w-screen bg-white min-h-[140vh] z-999 flex flex-col items-center relative px-4 lg:px-0 gap-12 py-6"
     >
       <!-- Absolute Position Elips Div  -->
       <img
@@ -713,13 +659,17 @@ Where Luxury Lives Behind Trust
             style="font-family: lato_regular"
             class="font-[400] text-[16px] capitalize text-[#151515]"
           >
-          Noida has emerged as one of India’s most progressive cities, driven by world-class infrastructure. With seamless metro networks, expressways, and the upcoming Jewar International Airport, the city is transforming into a global hub. Its rapid growth makes it a hotspot for business, lifestyle, and real estate investment.
+            Noida has emerged as one of India’s most progressive cities, driven
+            by world-class infrastructure. With seamless metro networks,
+            expressways, and the upcoming Jewar International Airport, the city
+            is transforming into a global hub. Its rapid growth makes it a
+            hotspot for business, lifestyle, and real estate investment.
           </p>
         </div>
       </div>
 
       <div
-        class="w-[88%] flex flex-col lg:flex-row justify-between z-10 gap-8 lg:gap-0"
+        class="lg:w-[88%] flex flex-col gap-4 md:flex-row justify-between z-10 gap-8 lg:gap-0"
       >
         <!-- Left Section -->
         <div class="rghtSec">
@@ -742,9 +692,9 @@ Where Luxury Lives Behind Trust
                     alt="arrow"
                   />
                   <p
-                    class="capitalize font-[400] text-[20px] md:text-[24px] leading-relaxed text-[#15151599]"
+                    class="capitalize font-[400] text-[20px] md:text-[18px] leading-relaxed text-[#15151599]"
                   >
-                  Metro Connectivity, Proximity to Delhi & Noida Expressway
+                    Metro Connectivity, Proximity to Delhi & Noida Expressway
                   </p>
                 </div>
               </li>
@@ -757,9 +707,9 @@ Where Luxury Lives Behind Trust
                     alt="arrow"
                   />
                   <p
-                    class="capitalize font-[400] text-[20px] md:text-[24px] leading-relaxed text-[#15151599]"
+                    class="capitalize font-[400] text-[20px] md:text-[18px] leading-relaxed text-[#15151599]"
                   >
-                   Strategic Location & Connectivity
+                    Strategic Location & Connectivity
                   </p>
                 </div>
               </li>
@@ -772,9 +722,9 @@ Where Luxury Lives Behind Trust
                     alt="arrow"
                   />
                   <p
-                    class="capitalize font-[400] text-[20px] md:text-[24px] leading-relaxed text-[#15151599]"
+                    class="capitalize font-[400] text-[20px] md:text-[18px] leading-relaxed text-[#15151599]"
                   >
-                 Residential & Commercial Growth
+                    Residential & Commercial Growth
                   </p>
                 </div>
               </li>
@@ -787,9 +737,9 @@ Where Luxury Lives Behind Trust
                     alt="arrow"
                   />
                   <p
-                    class="capitalize font-[400] text-[20px] md:text-[24px] leading-relaxed text-[#15151599]"
+                    class="capitalize font-[400] text-[20px] md:text-[18px] xl:text-[24px] leading-relaxed text-[#15151599]"
                   >
-                 Integrated Townships 
+                    Integrated Townships
                   </p>
                 </div>
               </li>
@@ -797,7 +747,7 @@ Where Luxury Lives Behind Trust
 
             <button
               style="font-family: monster_mdm"
-              class="w-[191px] mt-6 h-[52px] bg-black text-white cursor-pointer"
+              class="open-modal-btn w-[191px] mt-6 h-[52px] bg-black text-white cursor-pointer prjSec"
             >
               Explore More
             </button>
@@ -805,110 +755,56 @@ Where Luxury Lives Behind Trust
         </div>
 
         <!-- Right Section -->
-        <div class="lftSec">
-          <div class="sliderContainer w-full relative flex flex-col gap-4">
+        <div class="lftSec mt-4 ">
+          <div class="relative w-full flex flex-col gap-4">
             <div
-              class="slider w-full h-[300px] sm:h-[400px] md:w-[611px] md:h-[540px]"
+              class="w-full h-[300px] sm:h-[400px] md:w-[311px] xl:w-[611px] md:h-[540px] overflow-hidden"
             >
-              <div class="wrapper2">
-                <div class="slider2 slider-two">
-                  <div class="slide2">
-                    <img
-                      src="./images/s4/s4i2.png"
-                      class="w-full md:h-full object-contain"
-                      alt=""
-                    />
-                  </div>
-                  <div class="slide2">
-                    <img
-                      src="./images/s4/s4i2.png"
-                      class="w-full md:h-full object-contain"
-                      alt=""
-                    />
-                  </div>
-                  <div class="slide2">
-                    <img
-                      src="./images/s4/s4i2.png"
-                      class="w-full md:h-full object-contain"
-                      alt=""
-                    />
-                  </div>
-                  <div class="slide2">
-                    <img
-                      src="./images/s4/s4i2.png"
-                      class="w-full md:h-full object-contain"
-                      alt=""
-                    />
-                  </div>
-                  <div class="slide2">
-                    <img
-                      src="./images/s4/s4i2.png"
-                      class="w-full md:h-full object-contain"
-                      alt=""
-                    />
-                  </div>
-                  <div class="slide2">
-                    <img
-                      src="./images/s4/s4i2.png"
-                      class="w-full md:h-full object-contain"
-                      alt=""
-                    />
-                  </div>
+              <div class="slideshow-container2">
+                <div class="mySlides2 fade">
+                  <div class="numbertext">1 / 3</div>
+                  <img
+                    src="https://i.pinimg.com/1200x/91/de/31/91de31ffa097b96c863b9ea09787b3eb.jpg"
+                    alt="Slide 1"
+                  />
                 </div>
-                <div class="buttons mt-3 flex gap-4 z-50">
-                  <!-- Previous Button -->
-                  <button
-                    id="prev2"
-                    class="p-3 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition"
-                  >
-                    <!-- Left Arrow Icon -->
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M15 19l-7-7 7-7"
-                      />
-                    </svg>
-                  </button>
 
-                  <!-- Next Button -->
-                  <button
-                    id="next2"
-                    class="p-3 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition"
-                  >
-                    <!-- Right Arrow Icon -->
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
+                <div class="mySlides2 fade">
+                  <div class="numbertext">2 / 3</div>
+                  <img
+                    src="https://i.pinimg.com/736x/69/91/a0/6991a06d2c0dfea1f6efa46286d65a81.jpg"
+                    alt="Slide 2"
+                  />
+                </div>
+
+                <div class="mySlides2 fade">
+                  <div class="numbertext">3 / 3</div>
+                  <img
+                    src="https://i.pinimg.com/1200x/2c/66/0f/2c660f36dbe70311e5948596159e2f75.jpg"
+                    alt="Slide 3"
+                  />
                 </div>
               </div>
-            </div>
+              <br />
 
-            <div
-              class="flex hidden w-full justify-center items-center gap-2 absolute bottom-6 left-1/2 -translate-x-1/2 z-50"
-            >
-              <p class="circle w-[16px] h-[16px] bg-[#D9D9D9] rounded-full"></p>
-              <p class="circle w-[16px] h-[16px] bg-[#686868] rounded-full"></p>
-              <p class="circle w-[16px] h-[16px] bg-[#D9D9D9] rounded-full"></p>
+              <div
+                class="absolute bottom-0 left-1/2 transform -translate-x-1/2"
+              >
+                <span class="dot2"></span>
+                <span class="dot2"></span>
+                <span class="dot2"></span>
+              </div>
+            </div>
+            <div class="flex w-full hidden justify-center items-center gap-2">
+              <span
+                class="circle w-[16px] h-[16px] bg-[#D9D9D9] rounded-full"
+              ></span>
+              <span
+                class="circle w-[16px] h-[16px] bg-[#686868] rounded-full"
+              ></span>
+              <span
+                class="circle w-[16px] h-[16px] bg-[#D9D9D9] rounded-full"
+              ></span>
             </div>
           </div>
         </div>
@@ -917,7 +813,7 @@ Where Luxury Lives Behind Trust
 
     <!-- This Is Section 5 -->
     <section
-      class="s5 w-screen min-h-[135vh] pb-8 relative flex justify-center"
+      class="s5 w-screen min-h-[135vh] pb-8 relative flex justify-center "
       style="
         background-image: url(/images/s5/sanskaars5.png);
         background-position: center;
@@ -926,26 +822,27 @@ Where Luxury Lives Behind Trust
       "
     >
       <div
-        class="flex flex-col lg:flex-row w-[90%] justify-between pt-20 gap-12 lg:gap-0"
+        class="flex flex-col xl:flex-row w-[90%] justify-between pt-20 gap-12 lg:gap-0"
       >
         <!-- Left Side Card -->
         <div class="leftSide flex-1 flex flex-col gap-20">
-          <div class="flex flex-col md:w-[571px] gap-6">
+          <div class="flex flex-col lg:w-[571px] gap-6 md:pl-6 lg:pl-0">
             <h2
               style="font-family: lato_bold"
               class="uppercase font-[600] text-[36px] text-white"
             >
-           location map of Eternia
+              location map of Eternia
             </h2>
             <p
               style="font-family: lato_regular"
               class="font-[400] capitalize text-[28px] text-[#FFFFFF99]"
             >
-            Seamlessly linked to essentials, lifestyle, and opportunities, A thriving hub where families, jobs, and businesses converge.
+              Seamlessly linked to essentials, lifestyle, and opportunities, A
+              thriving hub where families, jobs, and businesses converge.
             </p>
           </div>
 
-          <div class="listContainer md:w-[502px] flex flex-col gap-6 sm:gap-4">
+          <div class="listContainer lg:w-[502px] flex flex-col gap-6 sm:gap-4">
             <div
               class="card3 flex flex-col sm:flex-row items-center gap-4 border-b-[1px] border-[#FFC86C] p-4"
             >
@@ -953,7 +850,7 @@ Where Luxury Lives Behind Trust
                 class="group bg-[#F8F4F4] w-[90px] h-[90px] flex justify-center items-center rounded-full flex-shrink-0"
               >
                 <img
-                  src="./images/s5/icnn1.png"
+                  src="./images/new-icn-5.png"
                   class="w-[50.5px] h-[50.5px]"
                   alt=""
                 />
@@ -962,7 +859,7 @@ Where Luxury Lives Behind Trust
                 style="font-family: monster_regular"
                 class="font-[500] text-[20px] text-white text-center sm:text-left"
               >
-               Advanced hospitals and medical centers with 24/7 care.
+                 Advanced hospitals and medical centers with 24/7 care.
               </p>
             </div>
 
@@ -973,7 +870,7 @@ Where Luxury Lives Behind Trust
                 class="group bg-[#F8F4F4] w-[90px] h-[90px] flex justify-center items-center rounded-full flex-shrink-0"
               >
                 <img
-                  src="./images/s5/icnn2.png"
+                  src="./images/new-icn-6.png"
                   class="w-[50.5px] h-[50.5px]"
                   alt=""
                 />
@@ -982,7 +879,7 @@ Where Luxury Lives Behind Trust
                 style="font-family: monster_regular"
                 class="font-[500] text-[20px] text-white text-center sm:text-left"
               >
-               Leading schools and universities make it an education hub.
+                Leading schools and universities make it an education hub.
               </p>
             </div>
 
@@ -993,7 +890,7 @@ Where Luxury Lives Behind Trust
                 class="group bg-[#F8F4F4] w-[90px] h-[90px] flex justify-center items-center rounded-full flex-shrink-0"
               >
                 <img
-                  src="./images/s5/icnn3.png"
+                  src="./images/new-icn-7.png"
                   class="w-[50.5px] h-[50.5px]"
                   alt=""
                 />
@@ -1002,7 +899,7 @@ Where Luxury Lives Behind Trust
                 style="font-family: monster_regular"
                 class="font-[500] text-[20px] text-white text-center sm:text-left"
               >
-               Premium malls, markets, and cinemas bring leisure close to home.
+                Premium malls, markets, and cinemas bring leisure close to home.
               </p>
             </div>
 
@@ -1011,7 +908,7 @@ Where Luxury Lives Behind Trust
                 class="group bg-[#F8F4F4] w-[90px] h-[90px] flex justify-center items-center rounded-full flex-shrink-0"
               >
                 <img
-                  src="./images/s5/icnn4.png"
+                    src="./images/new-icn-8.png"
                   class="w-[50.5px] h-[50.5px]"
                   alt=""
                 />
@@ -1020,7 +917,8 @@ Where Luxury Lives Behind Trust
                 style="font-family: monster_regular"
                 class="font-[500] text-[20px] text-white text-center sm:text-left"
               >
-               Well connected to IGI and the upcoming Jewar International Airport.
+                Well connected to IGI and the upcoming Jewar International
+                Airport.
               </p>
             </div>
           </div>
@@ -1039,7 +937,7 @@ Where Luxury Lives Behind Trust
           </div>
           <button
             style="font-family: monster_mdm"
-            class="w-[194px] h-[52px] bg-black font-[500] text-[16px] text-white cursor-pointer mt-4 lg:mt-0"
+            class="open-modal-btn w-[194px] h-[52px] bg-black font-[500] text-[16px] text-white cursor-pointer mt-4 lg:mt-0"
           >
             Explore More
           </button>
@@ -1059,9 +957,13 @@ Where Luxury Lives Behind Trust
           style="font-family: lato_bold"
           class="text-[18px] sm:text-[18px] lg:text-[30px] font-[600] text-white"
         >
-         With us, every relationship is built on trust and rewarded with loyalty. Beyond just buying a property, you become part of a community that values long-term association.
-Our loyalty benefits ensure you enjoy exclusive privileges, unmatched rewards, and peace of mind. Because for us, real estate is not just about spaces, it’s about lasting bonds.
-Embrace a future built on strong values, start your journey with Sanskar.
+          With us, every relationship is built on trust and rewarded with
+          loyalty. Beyond just buying a property, you become part of a community
+          that values long-term association. Our loyalty benefits ensure you
+          enjoy exclusive privileges, unmatched rewards, and peace of mind.
+          Because for us, real estate is not just about spaces, it’s about
+          lasting bonds. Embrace a future built on strong values, start your
+          journey with Sanskar.
         </p>
       </div>
 
@@ -1071,7 +973,7 @@ Embrace a future built on strong values, start your journey with Sanskar.
         <div class="item">
           <div>
             <img
-              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/slider_bags.jpg"
+              src="https://i.pinimg.com/1200x/97/25/17/97251790fcaa3fb099c3c67f8e0ed65a.jpg"
               alt=""
             />
             <div class="inner">
@@ -1082,7 +984,7 @@ Embrace a future built on strong values, start your journey with Sanskar.
         <div class="item black">
           <div>
             <img
-              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/slider_book_cover.jpg"
+              src="https://i.pinimg.com/736x/10/9e/e3/109ee385971d50218b28256a0073873c.jpg"
               alt=""
             />
             <div class="inner">
@@ -1093,7 +995,7 @@ Embrace a future built on strong values, start your journey with Sanskar.
         <div class="item">
           <div>
             <img
-              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/slider_bags.jpg"
+              src="https://i.pinimg.com/736x/dd/4a/56/dd4a56adbc1b2e7257f185638c483c4c.jpg"
               alt=""
             />
             <div class="inner">
@@ -1104,7 +1006,7 @@ Embrace a future built on strong values, start your journey with Sanskar.
         <div class="item black">
           <div>
             <img
-              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/slider_book_cover.jpg"
+              src="https://i.pinimg.com/736x/fd/83/40/fd8340d37ac36dbae806df82f0b9edc7.jpg"
               alt=""
             />
             <div class="inner">
@@ -1115,7 +1017,7 @@ Embrace a future built on strong values, start your journey with Sanskar.
         <div class="item">
           <div>
             <img
-              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/slider_bags.jpg"
+              src="https://i.pinimg.com/1200x/97/25/17/97251790fcaa3fb099c3c67f8e0ed65a.jpg"
               alt=""
             />
             <div class="inner">
@@ -1126,7 +1028,7 @@ Embrace a future built on strong values, start your journey with Sanskar.
         <div class="item black">
           <div>
             <img
-              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/slider_book_cover.jpg"
+              src="https://i.pinimg.com/736x/10/9e/e3/109ee385971d50218b28256a0073873c.jpg"
               alt=""
             />
             <div class="inner">
@@ -1149,7 +1051,7 @@ Embrace a future built on strong values, start your journey with Sanskar.
       "
     >
       <div
-        class="w-[90%] mx-auto flex flex-wrap gap-10 lg:gap-[118px] md:ml-40 md:mt-20"
+        class="w-[90%] mx-auto flex flex-wrap gap-10 lg:gap-[118px] md:ml-20 lg:ml-40 md:mt-20"
       >
         <!-- Logo + About -->
         <div class="flex flex-col w-[468px] gap-[21px]">
@@ -1296,8 +1198,118 @@ Embrace a future built on strong values, start your journey with Sanskar.
       class="w-full bg-white text-[#00000099] flex justify-center items-center h-[70px] text-[16px] font-[400] px-4 text-center"
     >
       <p style="font-family: lato_regular">
-        © 2025 Sanskar Developers. All rights reserved. digital media planned by Ritz Media World
+        © 2025 Sanskar Developers. All rights reserved. digital media planned by
+        Ritz Media World
       </p>
+    </div>
+
+    <!-- Contact Form Modal -->
+    <div id="contactModal" class="modal-overlay hidden">
+      <div class="modal-container">
+        <button id="closeModal" class="modal-close-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+        <div class="modal-content">
+          <h2 style="font-family: monster_semiBold" class="modal-title">
+            Book A Site Visit
+          </h2>
+          <p style="font-family: monster_regular" class="modal-subtitle">
+            Fill out the form below and we'll get back to you soon
+          </p>
+          <form id="contactForm" class="modal-form">
+            <div class="form-row">
+              <div class="form-group form-group-half">
+                <label
+                  style="font-family: monster_mdm"
+                  for="name"
+                  class="form-label"
+                >
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-input"
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
+              <div class="form-group form-group-half">
+                <label
+                  style="font-family: monster_mdm"
+                  for="email"
+                  class="form-label"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label
+                style="font-family: monster_mdm"
+                for="phone"
+                class="form-label"
+              >
+                Phone
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                class="form-input"
+                placeholder="Enter your phone number"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label
+                style="font-family: monster_mdm"
+                for="message"
+                class="form-label"
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                class="form-textarea"
+                rows="4"
+                placeholder="Enter your message"
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              style="font-family: monster_mdm"
+              class="form-submit-btn"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
 
     <!-- GSAP Animations -->
