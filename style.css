@@ -164,10 +164,10 @@ body {
   cursor: pointer;
 }
 
-.open-modal-btn:hover {
+/* .open-modal-btn:hover {
   transform: translateY(-2px) !important;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
-}
+} */
 
 .open-modal-btn:active {
   transform: translateY(0) !important;
@@ -360,7 +360,7 @@ button.open-modal-btn {
   background-color: #000;
   color: white;
   border: none;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;

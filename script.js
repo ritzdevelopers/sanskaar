@@ -148,29 +148,101 @@ gsap.from(".s2Elips", {
 // Section 3 Animations Is Starting From Here
 
 // Initialize Lenis with advanced smoothness settings
-const lenis = new Lenis({
-  duration: 1.6, // Higher = slower & smoother (try 1.8 or 2 for even softer feel)
-  easing: (t) => 1 - Math.pow(1 - t, 3), // cubic ease-out for natural deceleration
-  direction: "vertical",
-  gestureDirection: "vertical",
-  smoothWheel: true,
-  smoothTouch: true, // enable smooth on touch devices too
-  touchMultiplier: 1.8, // more glide on touch scrolls
-  infinite: false, // disable looping scroll
-  lerp: 0.08, // linear interpolation factor (lower = smoother, slower)
-});
+let lenis;
+if (typeof Lenis !== "undefined") {
+  lenis = new Lenis({
+    duration: 1.6, // Higher = slower & smoother (try 1.8 or 2 for even softer feel)
+    easing: (t) => 1 - Math.pow(1 - t, 3), // cubic ease-out for natural deceleration
+    direction: "vertical",
+    gestureDirection: "vertical",
+    smoothWheel: true,
+    smoothTouch: true, // enable smooth on touch devices too
+    touchMultiplier: 1.8, // more glide on touch scrolls
+    infinite: false, // disable looping scroll
+    lerp: 0.08, // linear interpolation factor (lower = smoother, slower)
+  });
 
-// Continuous smooth update loop
-function raf(time) {
-  lenis.raf(time);
+  // Continuous smooth update loop
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
   requestAnimationFrame(raf);
 }
-
-requestAnimationFrame(raf);
 
 // Optional: Sync with ScrollTrigger (if using GSAP)
 // gsap.ticker.add((time) => lenis.raf(time * 1000));
 // gsap.ticker.lagSmoothing(0);
+
+// Smooth scroll for anchor links
+function initSmoothScroll() {
+  // Get all anchor links
+  const anchorLinks = document.querySelectorAll('a[href^="#"]');
+  
+  anchorLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
+      
+      // Skip if it's just "#" or if it's a modal button
+      if (href === "#" || link.classList.contains("open-modal-btn")) {
+        return;
+      }
+      
+      // Get target element
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        e.preventDefault();
+        
+        // Close mobile menu if open
+        const mobileMenu = document.getElementById("mobileMenu");
+        if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+          const menuBtn = document.getElementById("menuBtn");
+          const openIcon = document.getElementById("openIcon");
+          const closeIcon = document.getElementById("closeIcon");
+          if (menuBtn) {
+            gsap.to(mobileMenu, {
+              y: "-100%",
+              duration: 0.6,
+              ease: "power4.in",
+              onComplete: () => mobileMenu.classList.add("hidden"),
+            });
+            if (closeIcon) closeIcon.classList.add("hidden");
+            if (openIcon) openIcon.classList.remove("hidden");
+          }
+        }
+        
+        // Use Lenis smooth scroll if available
+        if (lenis) {
+          const navbarHeight = 80; // Adjust based on your navbar height
+          lenis.scrollTo(targetElement, {
+            offset: -navbarHeight,
+            duration: 1.5,
+            easing: (t) => 1 - Math.pow(1 - t, 3),
+          });
+        } else {
+          // Fallback smooth scroll if Lenis not available
+          const navbarHeight = 80;
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: "smooth",
+          });
+        }
+      }
+    });
+  });
+}
+
+// Initialize smooth scroll after DOM is ready
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initSmoothScroll);
+} else {
+  initSmoothScroll();
+}
 
 // Second Slider Logic
 
