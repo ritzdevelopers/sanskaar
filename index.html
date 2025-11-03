@@ -136,7 +136,7 @@
       <!-- Center Align Div -->
       <div class="text-white w-full text-center md:text-left">
         <!-- Absolute Circle div -->
-        <div class="relative relative md:w-[711px] text-white w-full z-0">
+        <div class="relative relative lg:w-[711px] text-white w-full z-0">
           <div
             class="w-[148px] h-[148px] bg-[#F7A51D] rounded-full absolute right-[10%] md:right-[10rem] top-10 md:top-28 -translate-x-1/2 -translate-y-1/3 z-0 opacity-0 circleAnim"
           ></div>
@@ -146,7 +146,7 @@
             class="text-[40px] sm:text-[52px] md:text-[64px] font-[600] relative opacity-0 headingAnim"
           >
             <span
-              class="text-[90px] sm:text-[120px] md:text-[151px] font-[600] relative"
+              class="text-[90px] sm:text-[120px] lg:text-[151px] font-[600] relative"
               >S</span
             >ANSKAR REALITY
           </h1>
@@ -154,7 +154,7 @@
 
         <p
           style="font-family: monster_mdm"
-          class="uppercase font-[500] text-[22px] sm:text-[32px] md:text-[46px] relative opacity-0 subHeadingAnim"
+          class="uppercase font-[500] text-[22px] sm:text-[32px] lg:text-[46px] relative opacity-0 subHeadingAnim"
         >
           A venture by Yatharth Group
         </p>
@@ -162,7 +162,7 @@
 
       <!-- Bottom Arrow Absolute Div -->
       <div
-        class="absolute bottom-10 left-6 md:bottom-20 md:left-[41px] opacity-0 arrowAnim"
+        class="absolute bottom-10 left-6 md:bottom-20 md:left-[41px] hidden lg:block opacity-0 arrowAnim"
       >
         <!-- Rotated Text -->
         <div class="flex items-center">
@@ -458,13 +458,15 @@
             </h2>
             <div class="flex flex-col sm:flex-row gap-4">
               <button
-              onclick="tabNavigationHandler('Highlife')"
+                onclick="tabNavigationHandler('Highlife')"
                 style="font-family: lato_regular"
+                id="highlifeBtn"
                 class="w-[184px] sm:w-[184px] h-[49px] shadow-md font-[400] text-[24px] bg-black text-white"
               >
                 Highlife
               </button>
               <button
+                id="eterniaBtn"
                 onclick="tabNavigationHandler('Eternia')"
                 style="font-family: lato_regular"
                 class="w-[184px] sm:w-[184px] h-[49px] shadow-md font-[400] text-[24px] bg-white text-black"
@@ -479,8 +481,8 @@
             class="md:w-[1280px] flex justify-center items-center h-full max-w-[100%] md:h-[617px]"
           >
             <img
-              src="./images/s3/s3BannerImg.png"
-              class="w-full h-full object-cover"
+              src="./images/highlife.png"
+              class="w-full h-full object-cover navigateImgs"
               alt=""
             />
           </div>
@@ -503,9 +505,13 @@
           </div>
 
           <!-- Left & Right Sections -->
-          <div class="lg:w-full w-screen  flex flex-col lg:flex-row md:flex-row-reverse">
+          <div
+            class="lg:w-full w-screen flex flex-col lg:flex-row md:flex-row-reverse"
+          >
             <!-- Left Section -->
-            <div class="lftSec w-full lg:w-[611px] flex pr-4 lg:pr-0 flex-col gap-4">
+            <div
+              class="lftSec w-full lg:w-[611px] flex pr-4 lg:pr-0 flex-col gap-4"
+            >
               <div class="sliderContainer relative w-full flex flex-col gap-4">
                 <div
                   class="w-full h-[300px] sm:h-[400px] md:w-[311px] xl:w-[611px] md:h-[540px] overflow-hidden"
@@ -621,9 +627,9 @@
                   </li>
                 </ul>
                 <button
-              
+                  onclick="exploreMoreHandler()"
                   style="font-family: monster_mdm"
-                  class="open-modal-btn w-full sm:w-[191px] mt-4 h-[48px] font-[500] text-[16px] sm:h-[52px] bg-black text-white prjSec"
+                  class="w-full sm:w-[191px] mt-4 h-[48px] font-[500] text-[16px] sm:h-[52px] bg-black text-white prjSec"
                 >
                   Explore More
                 </button>
@@ -746,6 +752,7 @@
             </ul>
 
             <button
+            onclick="exploreMoreHandler()"
               style="font-family: monster_mdm"
               class="open-modal-btn w-[191px] mt-6 h-[52px] bg-black text-white cursor-pointer prjSec"
             >
@@ -755,7 +762,7 @@
         </div>
 
         <!-- Right Section -->
-        <div class="lftSec mt-4 ">
+        <div class="lftSec mt-4">
           <div class="relative w-full flex flex-col gap-4">
             <div
               class="w-full h-[300px] sm:h-[400px] md:w-[311px] xl:w-[611px] md:h-[540px] overflow-hidden"
@@ -813,7 +820,7 @@
 
     <!-- This Is Section 5 -->
     <section
-      class="s5 w-screen min-h-[135vh] pb-8 relative flex justify-center "
+      class="s5 w-screen min-h-[135vh] pb-8 relative flex justify-center"
       style="
         background-image: url(/images/s5/sanskaars5.png);
         background-position: center;
@@ -908,7 +915,7 @@
                 class="group bg-[#F8F4F4] w-[90px] h-[90px] flex justify-center items-center rounded-full flex-shrink-0"
               >
                 <img
-                    src="./images/new-icn-8.png"
+                  src="./images/new-icn-8.png"
                   class="w-[50.5px] h-[50.5px]"
                   alt=""
                 />

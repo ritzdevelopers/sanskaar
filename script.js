@@ -641,11 +641,39 @@ const tabHandler = (name) => {
   }
 }
 
-
+let link = "";
 const tabNavigationHandler = (name) => {
+  let img = document.querySelector(".navigateImgs");
+  let highlifeBtn = document.getElementById("highlifeBtn");
+  let eterniaBtn = document.getElementById("eterniaBtn");
   if (name === "Highlife") {
-   window.open("https://highlife.greatvaluerealty.com", "_blank");  
+    img.src = "./images/highlife.png";
+    highlifeBtn.classList.add("bg-black");
+    highlifeBtn.classList.remove("bg-white");
+    highlifeBtn.classList.add("text-white");
+    highlifeBtn.classList.remove("text-black");
+    eterniaBtn.classList.add("bg-white");
+    eterniaBtn.classList.remove("bg-black");
+    eterniaBtn.classList.add("text-black");
+    eterniaBtn.classList.remove("text-white");
+    link = "https://highlife.greatvaluerealty.com";
+  //  window.open("https://highlife.greatvaluerealty.com", "_blank");  
   } else if (name === "Eternia") {
-    window.open("https://eternia.greatvaluerealty.com", "_blank");
+     img.src = "./images/eternia-img.webp"
+    highlifeBtn.classList.add("bg-white");
+    highlifeBtn.classList.remove("bg-black");
+    highlifeBtn.classList.add("text-black");
+    highlifeBtn.classList.remove("text-white");
+    eterniaBtn.classList.add("bg-black");
+    eterniaBtn.classList.remove("bg-white");
+    eterniaBtn.classList.add("text-white");
+    eterniaBtn.classList.remove("text-black");
+    link = "https://eternia.greatvaluerealty.com";
+    // window.open("https://eternia.greatvaluerealty.com", "_blank");
   }
 };
+
+
+function exploreMoreHandler() { 
+  window.open(link, "_blank");
+}
