@@ -179,23 +179,23 @@ if (typeof Lenis !== "undefined") {
 function initSmoothScroll() {
   // Get all anchor links
   const anchorLinks = document.querySelectorAll('a[href^="#"]');
-  
+
   anchorLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       const href = link.getAttribute("href");
-      
+
       // Skip if it's just "#" or if it's a modal button
       if (href === "#" || link.classList.contains("open-modal-btn")) {
         return;
       }
-      
+
       // Get target element
       const targetId = href.substring(1);
       const targetElement = document.getElementById(targetId);
-      
+
       if (targetElement) {
         e.preventDefault();
-        
+
         // Close mobile menu if open
         const mobileMenu = document.getElementById("mobileMenu");
         if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
@@ -213,7 +213,7 @@ function initSmoothScroll() {
             if (openIcon) openIcon.classList.remove("hidden");
           }
         }
-        
+
         // Use Lenis smooth scroll if available
         if (lenis) {
           const navbarHeight = 80; // Adjust based on your navbar height
@@ -225,8 +225,11 @@ function initSmoothScroll() {
         } else {
           // Fallback smooth scroll if Lenis not available
           const navbarHeight = 80;
-          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-          
+          const targetPosition =
+            targetElement.getBoundingClientRect().top +
+            window.pageYOffset -
+            navbarHeight;
+
           window.scrollTo({
             top: targetPosition,
             behavior: "smooth",
@@ -405,313 +408,123 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Slideshow Functionality
+// GSAP powered carousel helper
+function initGsapCarousel({ slideSelector, dotSelector, interval = 5000 }) {
+  const slides = gsap.utils.toArray(slideSelector);
+  if (!slides.length) return;
+
+  const dots = dotSelector ? gsap.utils.toArray(dotSelector) : [];
+  let activeIndex = 0;
+  let timer = null;
+  let isAnimating = false;
+
+  gsap.set(slides, {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+  });
+
+  slides.forEach((slide, index) => {
+    gsap.set(slide, {
+      xPercent: index === 0 ? 0 : 100,
+      autoAlpha: index === 0 ? 1 : 0,
+      zIndex: slides.length - index,
+    });
+  });
+
+  function updateDots(index) {
+    dots.forEach((dot, dotIndex) => {
+      dot.classList.toggle("active", dotIndex === index);
+    });
+  }
+  updateDots(activeIndex);
+
+  function goTo(index, direction = 1) {
+    if (index === activeIndex || isAnimating) return;
+
+    const currentSlide = slides[activeIndex];
+    const nextSlide = slides[index];
+    isAnimating = true;
+
+    gsap
+      .timeline({
+        defaults: { duration: 0.85, ease: "power2.inOut" },
+        onComplete: () => {
+          isAnimating = false;
+          restartAuto();
+        },
+      })
+      .set(nextSlide, {
+        xPercent: 100 * direction,
+        autoAlpha: 1,
+        zIndex: slides.length,
+      })
+      .to(currentSlide, { xPercent: -100 * direction }, 0)
+      .to(nextSlide, { xPercent: 0 }, 0)
+      .set(currentSlide, {
+        autoAlpha: 0,
+        xPercent: 100,
+        zIndex: slides.length - 1,
+      });
+
+    activeIndex = index;
+    updateDots(activeIndex);
+  }
+
+  function next() {
+    const nextIndex = (activeIndex + 1) % slides.length;
+    goTo(nextIndex, 1);
+  }
+
+  function prev() {
+    const prevIndex = (activeIndex - 1 + slides.length) % slides.length;
+    goTo(prevIndex, -1);
+  }
+
+  function restartAuto() {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(next, interval);
+  }
+  restartAuto();
+
+  dots.forEach((dot, dotIndex) => {
+    dot.addEventListener("click", () => {
+      goTo(dotIndex, dotIndex > activeIndex ? 1 : -1);
+    });
+  });
+
+  slides.forEach((slide) => {
+    slide.addEventListener("mouseenter", () => {
+      if (timer) clearTimeout(timer);
+    });
+    slide.addEventListener("mouseleave", restartAuto);
+  });
+
+  return { next, prev, restartAuto };
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  let slideIndex = 0;
-  let slideshowTimeout;
+  initGsapCarousel({
+    slideSelector: ".mySlides",
+    dotSelector: ".dot",
+    interval: 5000,
+  });
 
-  function showSlides() {
-    let i;
-    let slides = document.getElementsByClassName("mySlides");
-    let dots = document.getElementsByClassName("dot");
-
-    // Check if slides exist
-    if (slides.length === 0) {
-      return; // Exit if no slides found
-    }
-
-    // Hide all slides
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-
-    slideIndex++;
-    if (slideIndex > slides.length) {
-      slideIndex = 1;
-    }
-
-    // Remove active class from all dots
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-
-    // Show current slide and activate corresponding dot
-    if (slides[slideIndex - 1]) {
-      slides[slideIndex - 1].style.display = "block";
-    }
-    if (dots[slideIndex - 1]) {
-      dots[slideIndex - 1].className += " active";
-    }
-
-    // Clear previous timeout
-    if (slideshowTimeout) {
-      clearTimeout(slideshowTimeout);
-    }
-
-    // Set timeout for next slide
-    slideshowTimeout = setTimeout(showSlides, 2000); // Change image every 2 seconds
-  }
-
-  // Initialize slideshow if elements exist
-  const slides = document.getElementsByClassName("mySlides");
-  const dots = document.getElementsByClassName("dot");
-
-  if (slides.length > 0) {
-    // Show first slide immediately
-    if (slides[0]) {
-      slides[0].style.display = "block";
-    }
-    if (dots[0]) {
-      dots[0].className += " active";
-    }
-    // Start slideshow from slide 1 (next will be slide 2)
-    slideIndex = 1;
-    setTimeout(showSlides, 2000);
-
-    // Add click handlers to dots for manual navigation
-    for (let i = 0; i < dots.length; i++) {
-      dots[i].addEventListener("click", () => {
-        // Clear timeout
-        if (slideshowTimeout) {
-          clearTimeout(slideshowTimeout);
-        }
-
-        // Set slide index
-        slideIndex = i;
-
-        // Show selected slide
-        let j;
-        let allSlides = document.getElementsByClassName("mySlides");
-        let allDots = document.getElementsByClassName("dot");
-
-        for (j = 0; j < allSlides.length; j++) {
-          allSlides[j].style.display = "none";
-        }
-        for (j = 0; j < allDots.length; j++) {
-          allDots[j].className = allDots[j].className.replace(" active", "");
-        }
-
-        allSlides[slideIndex].style.display = "block";
-        allDots[slideIndex].className += " active";
-
-        // Resume slideshow
-        slideIndex++;
-        if (slideIndex >= slides.length) {
-          slideIndex = 0;
-        }
-        slideshowTimeout = setTimeout(showSlides, 2000);
-      });
-    }
-  }
-});
-
-// Slideshow Functionality - First Slider
-document.addEventListener("DOMContentLoaded", () => {
-  // First Slider
-  let slideIndex = 0;
-  let slideshowTimeout;
-
-  function showSlides() {
-    let i;
-    let slides = document.getElementsByClassName("mySlides");
-    let dots = document.getElementsByClassName("dot");
-
-    // Check if slides exist
-    if (slides.length === 0) {
-      return; // Exit if no slides found
-    }
-
-    // Hide all slides
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-
-    slideIndex++;
-    if (slideIndex > slides.length) {
-      slideIndex = 1;
-    }
-
-    // Remove active class from all dots
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-
-    // Show current slide and activate corresponding dot
-    if (slides[slideIndex - 1]) {
-      slides[slideIndex - 1].style.display = "block";
-    }
-    if (dots[slideIndex - 1]) {
-      dots[slideIndex - 1].className += " active";
-    }
-
-    // Clear previous timeout
-    if (slideshowTimeout) {
-      clearTimeout(slideshowTimeout);
-    }
-
-    // Set timeout for next slide
-    slideshowTimeout = setTimeout(showSlides, 2000); // Change image every 2 seconds
-  }
-
-  // Initialize first slideshow if elements exist
-  const slides = document.getElementsByClassName("mySlides");
-  const dots = document.getElementsByClassName("dot");
-
-  if (slides.length > 0) {
-    // Show first slide immediately
-    if (slides[0]) {
-      slides[0].style.display = "block";
-    }
-    if (dots[0]) {
-      dots[0].className += " active";
-    }
-    // Start slideshow from slide 1 (next will be slide 2)
-    slideIndex = 1;
-    setTimeout(showSlides, 2000);
-
-    // Add click handlers to dots for manual navigation
-    for (let i = 0; i < dots.length; i++) {
-      dots[i].addEventListener("click", () => {
-        // Clear timeout
-        if (slideshowTimeout) {
-          clearTimeout(slideshowTimeout);
-        }
-
-        // Set slide index
-        slideIndex = i;
-
-        // Show selected slide
-        let j;
-        let allSlides = document.getElementsByClassName("mySlides");
-        let allDots = document.getElementsByClassName("dot");
-
-        for (j = 0; j < allSlides.length; j++) {
-          allSlides[j].style.display = "none";
-        }
-        for (j = 0; j < allDots.length; j++) {
-          allDots[j].className = allDots[j].className.replace(" active", "");
-        }
-
-        allSlides[slideIndex].style.display = "block";
-        allDots[slideIndex].className += " active";
-
-        // Resume slideshow
-        slideIndex++;
-        if (slideIndex >= slides.length) {
-          slideIndex = 0;
-        }
-        slideshowTimeout = setTimeout(showSlides, 2000);
-      });
-    }
-  }
-
-  // Second Slider
-  let slideIndex2 = 0;
-  let slideshowTimeout2;
-
-  function showSlides2() {
-    let i;
-    let slides = document.getElementsByClassName("mySlides2");
-    let dots = document.getElementsByClassName("dot2");
-
-    // Check if slides exist
-    if (slides.length === 0) {
-      return; // Exit if no slides found
-    }
-
-    // Hide all slides
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-
-    slideIndex2++;
-    if (slideIndex2 > slides.length) {
-      slideIndex2 = 1;
-    }
-
-    // Remove active class from all dots
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-
-    // Show current slide and activate corresponding dot
-    if (slides[slideIndex2 - 1]) {
-      slides[slideIndex2 - 1].style.display = "block";
-    }
-    if (dots[slideIndex2 - 1]) {
-      dots[slideIndex2 - 1].className += " active";
-    }
-
-    // Clear previous timeout
-    if (slideshowTimeout2) {
-      clearTimeout(slideshowTimeout2);
-    }
-
-    // Set timeout for next slide
-    slideshowTimeout2 = setTimeout(showSlides2, 2000); // Change image every 2 seconds
-  }
-
-  // Initialize second slideshow if elements exist
-  const slides2 = document.getElementsByClassName("mySlides2");
-  const dots2 = document.getElementsByClassName("dot2");
-
-  if (slides2.length > 0) {
-    // Show first slide immediately
-    if (slides2[0]) {
-      slides2[0].style.display = "block";
-    }
-    if (dots2[0]) {
-      dots2[0].className += " active";
-    }
-    // Start slideshow from slide 1 (next will be slide 2)
-    slideIndex2 = 1;
-    setTimeout(showSlides2, 2000);
-
-    // Add click handlers to dots for manual navigation
-    for (let i = 0; i < dots2.length; i++) {
-      dots2[i].addEventListener("click", () => {
-        // Clear timeout
-        if (slideshowTimeout2) {
-          clearTimeout(slideshowTimeout2);
-        }
-
-        // Set slide index
-        slideIndex2 = i;
-
-        // Show selected slide
-        let j;
-        let allSlides = document.getElementsByClassName("mySlides2");
-        let allDots = document.getElementsByClassName("dot2");
-
-        for (j = 0; j < allSlides.length; j++) {
-          allSlides[j].style.display = "none";
-        }
-        for (j = 0; j < allDots.length; j++) {
-          allDots[j].className = allDots[j].className.replace(" active", "");
-        }
-
-        allSlides[slideIndex2].style.display = "block";
-        allDots[slideIndex2].className += " active";
-
-        // Resume slideshow
-        slideIndex2++;
-        if (slideIndex2 >= slides2.length) {
-          slideIndex2 = 0;
-        }
-        slideshowTimeout2 = setTimeout(showSlides2, 2000);
-      });
-    }
-  }
+  initGsapCarousel({
+    slideSelector: ".mySlides2",
+    dotSelector: ".dot2",
+    interval: 5000,
+  });
 });
 
 const tabHandler = (name) => {
   const btns = document.querySelectorAll(".prjSec");
-  if (name === "Highlife") { 
-
-  } else if (name === "Eternia") { 
-
+  if (name === "Highlife") {
+  } else if (name === "Eternia") {
   }
-}
+};
 
 let link = "";
 const tabNavigationHandler = (name) => {
@@ -729,9 +542,9 @@ const tabNavigationHandler = (name) => {
     eterniaBtn.classList.add("text-black");
     eterniaBtn.classList.remove("text-white");
     link = "https://highlife.greatvaluerealty.com";
-  //  window.open("https://highlife.greatvaluerealty.com", "_blank");  
+    //  window.open("https://highlife.greatvaluerealty.com", "_blank");
   } else if (name === "Eternia") {
-     img.src = "./images/eternia-img.webp"
+    img.src = "./images/eternia-img.webp";
     highlifeBtn.classList.add("bg-white");
     highlifeBtn.classList.remove("bg-black");
     highlifeBtn.classList.add("text-black");
@@ -745,7 +558,6 @@ const tabNavigationHandler = (name) => {
   }
 };
 
-
-function exploreMoreHandler() { 
+function exploreMoreHandler() {
   window.open(link, "_blank");
 }
