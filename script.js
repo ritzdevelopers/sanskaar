@@ -527,12 +527,39 @@ const tabHandler = (name) => {
 };
 
 let link = "";
+let listItemsHighlife = document.getElementById("listItemsHighlife");
+let para1 = document.getElementById("para1");
+let para2 = document.getElementById("para2");
+let para3 = document.getElementById("para3");
+let tabPara = document.getElementById("tabPara");
 const tabNavigationHandler = (name) => {
-  let img = document.querySelector(".navigateImgs");
-  let highlifeBtn = document.getElementById("highlifeBtn");
-  let eterniaBtn = document.getElementById("eterniaBtn");
+  const imgEl = document.querySelector(".navigateImgs");
+  const highlifeBtn = document.getElementById("highlifeBtn");
+  const eterniaBtn = document.getElementById("eterniaBtn");
+
+  if (
+    !imgEl ||
+    !highlifeBtn ||
+    !eterniaBtn ||
+    !tabPara ||
+    !para1 ||
+    !para2 ||
+    !para3 ||
+    !listItemsHighlife
+  ) {
+    console.warn("tabNavigationHandler: Missing DOM references");
+    return;
+  }
+
+  const clearDynamicHighlights = () => {
+    listItemsHighlife
+      .querySelectorAll(".eterniaLi")
+      .forEach((li) => li.remove());
+  };
+
   if (name === "Highlife") {
-    img.src = "./images/highlife.png";
+    clearDynamicHighlights();
+    imgEl.src = "./images/highlife.png";
     highlifeBtn.classList.add("bg-black");
     highlifeBtn.classList.remove("bg-white");
     highlifeBtn.classList.add("text-white");
@@ -542,9 +569,18 @@ const tabNavigationHandler = (name) => {
     eterniaBtn.classList.add("text-black");
     eterniaBtn.classList.remove("text-white");
     link = "https://highlife.greatvaluerealty.com";
+    tabPara.innerHTML =
+      "Designed with depth, purpose in every layer.  High Life offers 1 & 2 BHK studio apartments in Greater Noida (West)'s most sought-after location. Situated along a 130-meter-wide main road and overlooking a fully developed 100-meter green belt, High Life seamlessly blends city connectivity with serene open vistas. ";
+    para1.innerHTML =
+      "Modern architecture and robust construction A perfect harmony of style and structural strength";
+    para2.innerHTML =
+      "Prime location with excellent road connectivity An address that keeps you well-linked to life";
+    para3.innerHTML =
+      "Gated community with round-the-clock security Where Luxury Lives Behind Trust";
     //  window.open("https://highlife.greatvaluerealty.com", "_blank");
   } else if (name === "Eternia") {
-    img.src = "./images/eternia-img.webp";
+    clearDynamicHighlights();
+    imgEl.src = "./images/eternia-img.webp";
     highlifeBtn.classList.add("bg-white");
     highlifeBtn.classList.remove("bg-black");
     highlifeBtn.classList.add("text-black");
@@ -554,10 +590,44 @@ const tabNavigationHandler = (name) => {
     eterniaBtn.classList.add("text-white");
     eterniaBtn.classList.remove("text-black");
     link = "https://eternia.greatvaluerealty.com";
+    tabPara.innerHTML =
+      "Eternal life reflected in a home that stands with timeless grace. Inspired by the Anthurium flower, a timeless emblem of resilience and eternal life . Eternia offers 3 & 4 BHK spacious residences crafted for those who aspire to live grand. With thoughtfully designed layouts,premium finishes, and expansive interiors, Eternia is more than a home; it’s where elegance meets endurance, and where purposeful design shapes a legacy of modern luxury.";
+    para1.innerHTML = "Wellness Thoughtfully built for your well-being ";
+    para2.innerHTML = "Comfort Feel at home in every corner ";
+    para3.innerHTML = "Community Built for bonds that last";
+
+    const li = document.createElement("li");
+    li.classList.add("eterniaLi");
+
+    const div = document.createElement("div");
+    div.classList.add("flex", "items-center", "gap-2", "md:gap-4");
+
+    const arrowImg = document.createElement("img");
+    arrowImg.src = "./images/s3/ajeebArrow.png";
+    arrowImg.classList.add("w-[24px]", "sm:w-[28px]", "md:w-[40px]");
+    arrowImg.alt = "arrow";
+
+    const para4 = document.createElement("p");
+    para4.classList.add(
+      "text-[14px]",
+      "sm:text-[18px]",
+      "md:text-[18px]",
+      "xl:text-[24px]",
+      "font-[400]",
+      "leading-relaxed",
+      "text-[#15151599]"
+    );
+    para4.innerHTML = "Grand Living The Space Where Grandeur Takes Shape";
+
+    div.appendChild(arrowImg);
+    div.appendChild(para4);
+    li.appendChild(div);
+    listItemsHighlife.appendChild(li);
+
     // window.open("https://eternia.greatvaluerealty.com", "_blank");
   }
 };
 
 function exploreMoreHandler() {
-  window.open(link, "_blank");
+  window.open(link || "https://highlife.greatvaluerealty.com", "_blank");
 }
