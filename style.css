@@ -692,3 +692,21 @@ button.open-modal-btn {
     padding-bottom: 20px;
   }
 }
+
+@media (max-width: 767px) {
+  .s1 {
+    background-image: url(./images/s1/mobile.jpg) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 1024px) {
+  .s1 {
+    background-image: url(./images/s1/tab.jpg) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+  }
+}
